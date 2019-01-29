@@ -1,0 +1,42 @@
+{
+  "pages":[
+    "pages/login/login",
+    "pages/index/index",
+    "pages/template/template",
+    "pages/work/index/work",
+    "pages/myself/myself_commission/myself"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  },
+    "tabBar": {
+      "color": "#fff",
+      "selectedColor": "#4bbec3",
+      "backgroundColor": "#333",
+      "borderStyle": "white",
+      "position": "bottom",
+      "list": [
+        {
+          "pagePath": "pages/index/index",
+          "iconPath": "pages/images/page_login/activity.png",
+          "selectedIconPath": "pages/images/page_login/selectActivity.png",
+          "text": "活动"
+        },
+        {
+          "pagePath": "pages/work/index/work",
+          "iconPath": "pages/images/page_login/work.png",
+          "selectedIconPath": "pages/images/page_login/selectWork.png",
+          "text": "工作台"
+        },
+        {
+          "pagePath": "pages/myself/myself_commission/myself",
+          "iconPath": "pages/images/page_login/my.png",
+          "selectedIconPath": "pages/images/page_login/selectMy.png",
+          "text": "我的"
+        }
+      ]
+    }
+}
