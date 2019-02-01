@@ -8,3 +8,15 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+.flexColumnH{
+  display:flex;
+  flex-flow:column nowrap;
+}
+.paddingBox{
+  padding:20rpx;
+  box-sizing:border-box;
+}
+.flexRow{
+  display:flex;
+  flex-flow:row nowrap;
+}

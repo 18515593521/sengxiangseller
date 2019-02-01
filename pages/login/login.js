@@ -2,10 +2,10 @@
 var app = getApp();   //获取应用实例
 Page({
   data: {
-    '_name': null,   //账号
-    '_password': null,   //密码
-    '_bmh':null,
-    '_zzh':null,
+    '_name': '',   //账号
+    '_password': '',   //密码
+    '_bmh':'',
+    '_zzh':'',
     'tipsInfo_Message': {
       tipsInfo: null,    //提示信息
       gifts: true  //等待的菊花效果
@@ -23,7 +23,9 @@ Page({
       gifts: true  //等待的菊花效果
     })
     if (userInfo) {
-
+      app.globalData.userInfo = userInfo;
+      console.log(1111111111)
+      console.log(userInfo)
       thisPage.setData({
         '_name': userInfo.user_name,   //账号
         '_password': userInfo.user_pwd,   //密码
@@ -76,9 +78,6 @@ Page({
               method: 'POST',
               success: function (res) {
 
-                thisPage.setData({
-                  gifts: true
-                });
                 var resData = res.data;
                 if (resData.code == 0) {
                 

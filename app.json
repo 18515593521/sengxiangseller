@@ -4,7 +4,11 @@
     "pages/index/index",
     "pages/template/template",
     "pages/work/index/work",
-    "pages/myself/myself_commission/myself"
+    "pages/myself/myself_commission/myself",
+    "pages/work/knowledge/new_list/new_list",
+    "pages/work/knowledge/new_detail/new_detail",
+    "pages/work/customer_manager/user_file/user_file",
+    "pages/work/customer_manager/customer_detail/customer_detail"
   ],
   "window":{
     "backgroundTextStyle":"light",

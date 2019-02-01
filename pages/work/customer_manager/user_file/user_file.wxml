@@ -1,0 +1,56 @@
+<!--pages/work/customer_manager/user_file/user_file.wxml-->
+
+
+<!-- 导航栏 -->
+<view class='list paddingBox flexRow justAround'>
+  <view class='item_li {{activeList[0]}}' data-item='0' bindtap='click_request_data'>全部</view>
+  <view class='item_li {{activeList[1]}}' data-item='1' bindtap='click_request_data'>新客户</view>
+  <view class='item_li {{activeList[2]}}' data-item='2' bindtap='click_request_data'>订单客户</view>
+  <view class='item_li {{activeList[3]}}' data-item='3' bindtap='click_request_data'>活动客户</view>
+</view>
+<!-- 未点击标签客户（无弹框弹出）时 -->
+<view class='all_orders flexColumn'>
+  <view class='search_box paddingBox flexRow'>
+    <view class='search'>
+      <image src='/pages/images/search.png' bindtap='search' data-type='1'></image>
+      <input class='search_input' data-type='2' placeholder='请输入姓名或联系方式搜索' placeholder-style='margin-left:20rpx' bindconfirm='search' bindblur='blurGetData'></input>
+    </view>
+    <view class='select_list'>
+      <picker range='{{propertyData}}' bindchange="bindPickerChange" value="{{property}}" class='from_text'>
+        <view>{{propertyData[property]}}</view>
+      </picker>
+      <image src='/pages/images/pulldown.png' class='pullDown'></image>
+    </view>
+  </view>
+</view>
+
+<!--列表-->
+ <block wx:for='{{titleList}}' wx:item='order' wx:for-index='current' wx:key='ids'> 
+  <view hidden='{{itenList[current]}}' class='positionTop'>
+    <!--暂无数据-->
+    <view class='available' wx:if='{{customerInfo.length==0}}'>----暂无数据----</view>
+    <!--以上是后台，以下是导购-->
+    <view class='user_info_list flexColumn'>
+      <block wx:for='{{customerInfo}}' wx:for-item='item' wx:key='customerId'>
+        <view class='user_info_item flexRow'>
+          <view class='info_item_box '>
+            <view>客户姓名</view>
+            <view>{{item.customerName}}</view>
+          </view>
+          <view class='info_item_box '>
+            <view>联系电话</view>
+            <view>{{item.custonerPhone}}</view>
+          </view>
+          <view class='info_item_box '>
+            <view>订单总额</view>
+            <view>{{item.orderPrice?item.orderPrice:0}}</view>
+          </view>
+          <view class='info_item_box '>
+            <view class='lookDeatail' data-type='1'  data-item ="{{item}}"data-url='/pages/work/customer_manager/customer_detail/customer_detail?detail={{item.customerId}}' bindtap='modealTap'>查看详情</view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+ </block> 
+<!--列表-->

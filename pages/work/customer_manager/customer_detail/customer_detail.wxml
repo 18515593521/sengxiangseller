@@ -1,0 +1,154 @@
+<!--pages/work/customer_manager/customer_detail/customer_detail.wxml-->
+  <view class='paddingBox listInfo'>
+    <view class='flexColumnNo'>
+      <view class='customer_item flexRow'>
+        <view class='infoBox'>
+          <view style='width:100rpx'>渠道：</view> 
+          <view style='width:250rpx'>{{propertyData[customerInfo.property]}}</view>
+        </view>
+      </view>
+      <view class='customer_item flexRow'>
+        <view class='infoBox'>
+          <view style='width:135rpx'>客户姓名:</view>
+          <view style='width:215rpx'>{{customerInfo.customerName}}</view>
+        </view>
+        <view class='infoBox'>
+          <view style='width:135rpx'>联系电话：</view>
+          <view style='width:215rpx'>{{customerInfo.customerPhone?customerInfo.customerPhone:'暂无'}}</view>
+        </view>
+      </view>
+      <!-- customer_item -->
+      <view class='flexColumnH' style='margin:10rpx 0' wx:if="{{customerInfo.consignee_address}}">
+        <view class='infoBox flexRow' style='width:100%'>
+          <view style='width:135rpx'>安装地址：</view>
+          <view style='width:550rpx'>{{customerInfo.consignee_address}}</view>
+        </view>
+      </view>
+      <view class='customer_item' style='margin:10rpx 0' wx:elif="{{customerInfo.consignee_address==null}}">
+        <view class='infoBox' style='width:100%'>
+          <view style='width:150rpx'>安装地址：</view>
+          <view style='width:550rpx'>暂无</view>
+        </view>
+      </view>
+    </view>
+    <view class='make_order' bindtap='openCreateOrder' data-customerId='{{customerInfo.customerId}}' data-type='open'>生成订单</view>
+    <!--生成订单-->
+    <view class='make_order_box' hidden='{{makeOrder}}'>
+      <view class='order_class_box'>
+        <view class='make_order_class flexColumnH'>
+          <view bindtap='sureMakeOrder' data-orderType='1'>生成销售订单</view>
+          <view bindtap='sureMakeOrder' data-orderType='2'>生成活动订单</view>
+        </view>
+        <view class='make_order_operation flexRow'>
+          <view class='cancel' data-type='close' bindtap='openCreateOrder'>取消</view>
+          <view class='sure' data-type='close' bindtap='openCreateOrder'>确认</view>
+        </view>
+      </view>
+    </view>
+
+
+  </view>
+
+
+  <!--活动记录-->
+  <view class='flexColumnH' style='border-top:20rpx solid #eee;'>
+    <view class='activityRecord paddingBox'>活动记录</view>
+    <view class='noData1' wx:if='{{customerActivity.length==0}}'>暂无数据哦！</view>
+    <block wx:for='{{customerActivity}}' wx:for-item='item' wx:key='activityId'>
+      <image src='{{item.imgurl}}' class='activityImg'></image>
+      <view style='overflow:hidden;' class='paddingBox flexRow'>
+        <view class='activityInfo'>
+          <view class='activity_info'>
+            <view>活动名称：</view>
+            <view>{{item.activityName}}</view>
+          </view>
+          <view class='activity_info' style='margin-top:10rpx;'>
+            <view>活动时间：</view>
+            <view>{{item.generalize_start}}---{{item.generalize_end}}</view>
+          </view>
+        </view>
+        <view class='activityDetails' data-id='{{item.activityId}}' bindtap='activity_detail'>活动详情</view>
+      </view>
+    </block>
+  </view>
+
+  <!--订单记录-->
+  <view class='flexColumnH' style='border-top:20rpx solid #eee;'>
+    <view class='activityRecord paddingBox'>订单记录</view>
+    <block wx:for='{{customerOrder}}' wx:for-item='order' wx:key='customerId'>
+      <view class='paddingBox orderItem'>
+        <image src='/pages/images/work/customer_info/store.png' class='store leftInfo'></image>
+        <view style='margin-left:20rpx' class='leftInfo'>订单编号:</view>
+        <view style='float:left'>{{order.order_code}}</view>
+        <view style='color:red;float:right;font-size:26rpx'>{{orderState[order.orderState]}}</view>
+        <view class='editOrders' wx:if='{{order.orderState!==4}}' bindtap='editOrderDetail' data-id='{{order.customerId}}' data-orderType='{{order.orderType}}' data-activityId="{{order.activityId}}" data-orderId='{{order.orderId}}' data-editType='edit'>编辑</view>
+      </view>
+      <view class='orderInfo flexRow'>
+        <view class='order_info flexColumnH'>
+          <view>客户姓名</view>
+          <view>{{order.customerName}}</view>
+        </view>
+        <view class='order_info flexColumnH'>
+          <view>联系方式</view>
+          <view>{{order.customerPhone}}</view>
+        </view>
+        <view class='order_info flexColumnH'>
+          <view>产品型号</view>
+          <view>{{order.product_model}}</view>
+        </view>
+        <view class='order_info flexColumnH'>
+          <view>订单金额</view>
+          <view>￥{{order.order_price}}</view>
+        </view>
+      </view>
+      <view class='orderOpationBox paddingBox'>
+        <view class='orderTime'>订单时间：{{order.createTime}}</view>
+        <view class='activityDetails' style='margin-right:20rpx' wx:if='{{order.orderState!==4}}' data-id='{{order.orderId}}' data-type='open' bindtap='cause_box'>关闭订单</view>
+        <view class='activityDetails' data-id='{{order.customerId}}' data-activityId="{{order.activityId}}" data-orderType='{{order.orderType}}' data-orderId='{{order.orderId}}' bindtap='editOrderDetail' data-editType='look'>查看详情</view>
+      </view>
+    </block>
+  </view>
+
+<!--沟通记录-->
+  <view class='flexColumnH' style='border-top:20rpx solid #eee;'>
+    <view class='activityRecord paddingBox'>沟通记录</view>
+    <view class='noData1' wx:if='{{customerCommunication.length==0}}'>暂无数据哦！</view>
+    <view class='flexRow  activityRecord communicationList' wx:if='{{customerCommunication.length>0}}'>
+      <view class='communicationTime'>沟通时间</view>
+      <view class='communicationContent'>沟通内容</view>
+      <view class='communicationStatus'>状态</view>
+    </view>
+    <block wx:for='{{customerCommunication}}' wx:for-item='item' wx:key='activityId'>
+      <view class='flexRow  activityRecord communicationList' wx:if='{{customerCommunication.length>0}}'>
+      <view class='communicationTime'>{{item.communicate_time}}</view>
+      <view class='communicationContent'>{{item.communicate_content}}</view>
+      <view class='communicationStatus'></view>
+    </view>
+    </block>
+    <view class='make_order addLog' bindtap='openCreateOrder' data-customerId='{{customerInfo.customerId}}' data-type='open'>增加记录</view>
+  </view>
+
+  <!--评价记录-->
+  <view class='flexColumnH' style='border-top:20rpx solid #eee;'>
+  
+    <view class='activityRecord paddingBox'>评价记录</view>
+    
+    <view class='paddingBox'>
+      <block wx:for='{{customerEvaluate}}' wx:for-item='evaluate' wx:key=''>
+        <view class='flexColumnH evaluateBox'>
+          <view class='evaluateTime'>{{evaluate.create_time}}</view>
+          <view class='evaluateContent'>{{evaluate.content}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <!--关闭订单-->
+  <view class='make_order_box' hidden='{{closeOrderBox}}'>
+    <view class='close_order_boxs marginAuots flexColumnH'>
+      <textarea class='edit_cause' placeholder="{{closeOrderBox?'':'请输入关闭原因'}}" bindinput="editCause" hidden='{{closeOrderBox}}'></textarea>
+      <view class='make_order_operation flexRow'>
+        <view class='cancel' data-type='close' bindtap='cause_box'>取消</view>
+        <view class='sure' data-type='close' bindtap='sure_cause_box'>确认</view>
+      </view>
+    </view>
+  </view>
