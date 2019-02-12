@@ -35,7 +35,7 @@
         </view>
       </view>
     </view>
-    <view class='make_order' bindtap='openCreateOrder' data-customerId='{{customerInfo.customerId}}' data-type='open'>生成订单</view>
+    <view class='make_order' bindtap='getActivity' data-customerId='{{customerInfo.customerId}}' data-type='open'>生成订单</view>
     <!--生成订单-->
     <view class='make_order_box' hidden='{{makeOrder}}'>
       <view class='order_class_box'>
@@ -129,7 +129,8 @@
       <view class='communicationStatus'>{{titleList[item.state]}}</view>
     </view>
     </block>
-    <view class='make_order addLog' bindtap='openCreateOrder' data-customerId='{{customerInfo.customerId}}' data-type='open'>增加记录</view>
+    <view class='make_order addLog'  
+    bindtap='skipUpTo'   data-type='1' data-url='/pages/work/customer_manager/customer_communication/customer_communication?detail={{customerInfo.customerId}}' >增加记录</view>
   </view>
 
   <!--评价记录-->

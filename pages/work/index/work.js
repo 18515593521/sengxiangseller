@@ -37,9 +37,9 @@ Page({
         types: 'product',
       },
       {
-        url: 'client.jpg',
+        url: 'daily.jpg',
         title: '活动管理',
-        go_to_url: '/pages/work/customer_manager/user_file/user_file?types=1',
+        go_to_url: '/pages/activity/activity_head_show/activity_head_show',
         indexPage: '1',
         types: 'product',
       },

@@ -8,11 +8,12 @@
   bottom:0;
   left:0;
   right:0;
+  border-top:2rpx solid #eee;
   z-index:10000;
  }
   .bgImages image{
     width:100%;
-    height:100%;
+    height:100vh;
     display:block;
   }
   .icon_look_num{
@@ -117,4 +118,8 @@ head_img_content{
 .activity_title{
   padding:10rpx 0;
   box-sizing:border-box;
+}
+.topscan{
+  width: 80rpx;
+  height: 80rpx;
 }

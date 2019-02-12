@@ -1,0 +1,177 @@
+<!--pages/work/customer_manager/customer_detail/customer_detail.wxml-->
+<view class='basic_info_box flexColumnH'>
+  <view class='basic_title flexRow'>
+    <view class='images'>
+      <image src='/pages/images/work/info.png'></image>
+    </view>
+    <view>基本信息</view>
+  </view>
+  <view class='flexColumnH'>
+    <view class='flexRow basicInfo'>
+      <picker class='picker_state flexRow' data-keys='lastState' data-basic='' mode='selector' bindchange='bindChangeState' value='{{info.lastState}}'  range='{{titleList}}' style='width:500rpx'>
+        <view class='states' style='width:150rpx'>状态:</view>
+        <view class='statesTitle flexRow' style='width:300rpx'>
+          <view class='titles_state' style='width:300rpx'>{{titleList[info.lastState]}}</view>
+          <view class='stateImgae'>
+            <image src='/pages/images/pulldown.png'></image>
+          </view>
+        </view>
+      </picker>
+    </view>
+    <view class='flexRow basicInfo'>
+      <picker class='picker_state flexRow' data-keys='gender' data-basic='' mode='selector' bindchange='bindChangeState' value='{{info.gender}}' disabled='{{disableds}}' range='{{sexData}}'>
+        <view class='states'>性别:</view>
+        <view class='statesTitle flexRow'>
+          <view class='titles_state'>{{sexData[info.gender]}}</view>
+          <view class='stateImgae'>
+            <image src='/pages/images/pulldown.png' wx:if='{{hiddents}}'></image>
+          </view>
+        </view>
+      </picker>
+      <view class='picker_sex flexRow'>
+        <view class='states'>年龄:</view>
+        <input type='number' placeholder='请输入年龄' data-basic='' value='{{info.age}}' maxlength='3' bindinput='editContent' data-keys='age' class='statesTitle ages'></input>
+      </view>
+    </view>
+
+   <view class='flexRow basicInfo'>
+      <view class='timer'>选择沟通时间:</view>
+        <view class='statesTitle flexRow' style='width:250rpx'>
+          <picker class='picker_timer flexRow' data-keys='communicate_time_start'  start="2018-01-01" end="2100-09-01"  data-basic=''  mode = 'date'   bindchange='editContent' value='{{info.communicate_time_start}}' >
+            <view class='titles_state'>{{info.communicate_time_start}}</view>
+          </picker>
+          <view class='stateImgae'>
+            <image src='/pages/images/pulldown.png'></image>
+          </view>
+        </view>
+        <view class='statesTitle flexRow' style='width:180rpx;margin-left:20rpx'>
+          <picker mode="time" class='picker_timer flexRow'  data-keys='communicate_time1' value="{{communicate_time1}}" start="09:00" end="18:01" bindchange="bindTimeChange1">
+            <view class="picker_timer" style='text-align:center;width:140rpx;'>
+            {{communicate_time1}}
+            </view>
+          </picker>    
+          <view class='stateImgae'>
+            <image src='/pages/images/pulldown.png'></image>
+          </view>
+        </view>     
+      </view>
+  </view>
+</view>
+<!--安装信息-->
+<view class='basic_info_box flexColumnH'>
+  <view class='basic_title flexRow'>
+    <view class='images'>
+      <image src='/pages/images/work/wrench.png'></image>
+    </view>
+    <view>安装信息</view>
+  </view>
+ 
+  <view class='flexRow basicInfo'>
+    <view class='flexRow' >
+      <view class='timer'>预计安装面积:</view>
+      <input type='number' placeholder='请输入面积数值'  data-basic=''  value='{{info.erection_space}}'  bindinput='editContent' data-keys='erection_space'  placeholder-style='color:#a7a7a7' class='statesTitle ages'></input> 
+      <view class='unit'>m</view>  
+    </view> 
+  </view>
+   <view class='flexRow basicInfo'>
+    <view class='flexRow' >
+      <view class='timer'>预计房屋面积:</view>
+      <input type='number' placeholder='请输入面积数值'  data-basic=''  value='{{info.floor_space}}'  bindinput='editContent' data-keys='floor_space'  placeholder-style='color:#a7a7a7' class='statesTitle ages'></input> 
+      <view class='unit'>m</view>  
+    </view> 
+  </view>
+  <view class='flexRow basicInfo'>
+    <view class='timer' style='width:250rpx'>选择安装时间(开始):</view>
+    <view class='statesTitle flexRow' style='width:250rpx'>
+      <view class='uncertain' hidden='{{noKnown}}' bindtap='showSelect' data-type='1'>{{uncertainText}}</view>
+      <view class='titles_state' bindtap='showSelect' data-type='1' hidden='{{canTipSelect}}'>{{info.installation_time_start}}</view>
+      <view hidden='{{noTipSelect}}'>
+        <picker class='Sure flexRow' bindcancel='cancel' style='width:100%;line-height:60rpx' data-keys='installation_time_start' start="2018-01-01" end="2100-09-01" data-basic='' mode='date' bindchange='editContent' value='{{info.installation_time_start}}'>
+          <view class='titles_state' data-type='1'> {{info.installation_time_start}}</view>
+        </picker>
+      </view>
+
+      <view class='stateImgae'>
+        <image src='/pages/images/pulldown.png' ></image>
+      </view>
+    </view>
+    <view class='statesTitle flexRow' style='width:180rpx;margin-left:20rpx' hidden='{{noKnown3}}'>
+      <picker mode="time" class='picker_timer flexRow' bindcancel='cancel' data-keys='installation_time1' value="{{info.installation_time1}}"  start="09:00" end="18:01" bindchange="installation_time1">
+        <view class="picker_timer" style='text-align:center;width:140rpx;'>
+          {{installation_time1}}
+        </view>
+      </picker>
+      <view class='stateImgae'>
+        <image src='/pages/images/pulldown.png'></image>
+      </view>
+    </view>
+  </view>
+
+  <view class='flexRow basicInfo'>
+    <view class='timer' style='width:250rpx'>选择安装时间(结束):</view>
+    <view class='statesTitle flexRow' style='width:250rpx'>
+      <view class='uncertain' hidden='{{noKnown2}}' bindtap='showSelect' data-type='2'>{{uncertainText}}</view>
+      <view class='titles_state' bindtap='showSelect' data-type='2' hidden='{{canTipSelect1}}'>{{info.installation_time_end}}</view>
+      <view hidden='{{noTipSelect1}}'>
+        <picker class='Sure flexRow' style='width:100%;;line-height:60rpx' data-keys='installation_time_end' start="2018-01-01" end="2100-09-01" data-basic='' bindcancel='cancel' mode='date' bindchange='editContent' value='{{info.installation_time_end}}'>
+          <view class='titles_state' data-type='2'> {{info.installation_time_end}}</view>
+        </picker>
+      </view>
+      <view class='stateImgae'>
+        <image src='/pages/images/pulldown.png' ></image>
+      </view>
+    </view>
+    <view class='statesTitle flexRow' style='width:180rpx;margin-left:20rpx' hidden='{{noKnown4}}'>
+      <picker mode="time" class='picker_timer flexRow' bindcancel='cancel' data-keys='installation_time2' value="{{installation_time2}}" start="09:00" end="18:01" bindchange="installation_time2" >
+        <view class="picker_timer" style='text-align:center;width:140rpx;'>
+          {{installation_time2}}
+        </view>
+      </picker>
+      <view class='stateImgae'>
+        <image src='/pages/images/pulldown.png' ></image>
+      </view>
+    </view>
+  </view>
+<view class='flexRow basicInfo'>
+    <view class='flexRow' >
+      <view class='timer'>预计安装款式:</view>
+      <input type='number' placeholder='请输入面积数值'  data-basic=''  value='{{info.install_style}}'  bindinput='editContent' data-keys='install_style'  placeholder-style='color:#a7a7a7' class='statesTitle ages'></input> 
+    </view> 
+  </view>
+
+  <view class='titler'>沟通记录</view>
+  <textarea value='{{info.remark}}' hidden='{{textHidenShow}}' data-basic='' placeholder='请填写沟通记录' data-keys='remark' class='remark paddingBox' bindinput='editContent'></textarea>
+</view>
+
+
+<!--提交按钮-->
+<view class='submit' bindtap='submitData'>提交</view>
+<!--弹框开始-->
+<view class='pop-select_content' hidden='{{startTimers1}}'>
+  <view class='pop-select flexColumnH'>
+    <view class='content' style='text-align:center;line-height:120rpx'>预计开始安装时间</view>
+    <view class='flexRow sureContent'>
+      <view class='noSure' bindtap='unknown'>未定</view>
+      <picker class='Sure flexRow' style='background:#44c0c1' data-keys='installation_time_start' start="2018-01-01" end="2100-09-01" data-basic='' mode='date' bindcancel='cancel' bindchange='editContent'>
+        <view class='titles_state' bindtap='clickSure' data-type='1'> 确定</view>
+      </picker>
+    </view>
+  </view>
+</view>
+<!--弹框结束-->
+<view class='pop-select_content' hidden='{{startTimers2}}'>
+  <view class='pop-select flexColumnH'>
+    <view class='content' style='text-align:center;line-height:120rpx'>预计结束安装时间</view>
+    <view class='flexRow sureContent'>
+      <view class='noSure' bindtap='unknown'>未定</view>
+      <picker class='Sure flexRow' style='background:#44c0c1' data-keys='installation_time_end' start="2018-01-01" end="2100-09-01" data-basic='' mode='date' bindcancel='cancel' bindchange='editContent'>
+        <view class='titles_state' bindtap='clickSure' data-type='2'> 确定</view>
+      </picker>
+    </view>
+  </view>
+</view>
+<!--提示-->
+<view class='tipsBox' hidden='{{HintInfos}}'>
+  <view class='tipsTitle'>{{dataTip}}</view>
+  <view class='sures' bindtap='sures'>确定</view>
+</view>

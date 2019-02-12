@@ -9,10 +9,20 @@
     "pages/work/knowledge/new_detail/new_detail",
     "pages/work/customer_manager/user_file/user_file",
     "pages/work/customer_manager/customer_detail/customer_detail",
+    "pages/work/customer_manager/customer_communication/customer_communication",
     "pages/myself/erweima/erweima",
-    "pages/work/order_manager/order_manager"
+    "pages/work/order_manager/order_manager",
+    "pages/work/integral_manager/my_integral_detail/my_integral_detail",
+    "pages/work/integral_manager/integral_detail/integral_detail",
+    "pages/myself/aboutUs/aboutUs",
+    "pages/myself/aboutUsDetail/aboutUsDetail",
+    "pages/myself/phone/phone",
+    "pages/myself/complete_phone/complete_phone",
+    "pages/activity/activity_head_show/activity_head_show",
+    "pages/work/customer_manager/make_order/make_order/make_order"
   ],
   "window":{
+    
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",

@@ -48,9 +48,6 @@ Page({
    */
   onLoad: function (options) {
     var thisPage =this;
-    thisPage.setData({
-      fromType: options.types
-    })
   },
   onShow : function(){
     var thisPage = this;

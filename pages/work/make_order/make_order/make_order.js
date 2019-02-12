@@ -252,7 +252,7 @@ getActivityOrderInfo:function(){
     url: urlPage + '/app/createOrder',
     data: {           //请求参数      
       activityId: thisPage.data.activityId,  //活动id
-      filialeId: app.globalData.userInfo.filialeId ,  //分公司id app.globalData.user_Info.filialeId 
+      filialeId: app.globalData.user_Info.filialeId ,  //分公司id app.globalData.user_Info.filialeId 
       customerId: thisPage.data.customerId  //客户di
     },
     header: {

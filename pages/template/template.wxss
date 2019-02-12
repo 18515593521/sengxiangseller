@@ -43,7 +43,7 @@
   position:fixed;
   margin:auto;
   right:10rpx;
-  bottom:490rpx;
+  bottom:200rpx;
 }
 .movableView{
   width:50px;

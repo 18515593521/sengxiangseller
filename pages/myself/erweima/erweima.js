@@ -204,9 +204,7 @@ Page({
       imageUrl = '/pages/images/bg.jpg'
     }
     return {
-      title: thisPage.data.shareName ? thisPage.data.shareName : app.globalData.user_Info.userInfo.filiale,
-      path: '/pages/share/share?P1=H' + '&P3=' + app.globalData.user_Info.user_id + '&appId=' + app.globalData.user_Info.app_id,
-      imageUrl: imageUrl,
+      
       success: function (res) {
         app.addPageSharePoint('我的专属码分享');
         // 转发成功

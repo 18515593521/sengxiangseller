@@ -2,7 +2,7 @@
 <view calss="activity_box">
   <block wx:for="{{activityList}}" wx:for-item="item" wx:key="imgurl">
     <view class='activit_list' data-url='/pages/activity/activity_details/activity_details?details={{item.id}}' data-type='1' bindtap='skipUpTo'>
-      <image src='{{item.imgurl}}'  mode='widthFix' class='activity_img'></image>
+      <image src='{{item.imgurl}}' mode='widthFix' class='activity_img'></image>
       <view class='activity_name'>{{item.name}}</view>
 
       <view class='activity_time  flexRow justAround'>
@@ -15,12 +15,12 @@
   </block>
 </view>
 <view class='bgImages' hidden='{{noActivity}}'>
-  <image src='/pages/images/activity/activity.jpg'  hidden='{{noActivity}}'></image>
+  <image src='/pages/images/activity.jpg' hidden='{{noActivity}}'></image>
 </view>
 
 
 <!--动态框-->
 <import src="../../pages/template/template.wxml" />
-<view hidden='{{isCommercial}}'>
+<view class=''>
   <template is="scanCorder" />
 </view>

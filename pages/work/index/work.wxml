@@ -64,4 +64,8 @@
     </view>
   </view>
 
-  
+ <!--动态框-->
+<import src="../../../pages/template/template.wxml"/>
+<view>
+  <template is="scanCorder"  />
+</view>
