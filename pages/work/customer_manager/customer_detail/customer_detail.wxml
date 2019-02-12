@@ -3,6 +3,10 @@
     <view class='flexColumnNo'>
       <view class='customer_item flexRow'>
         <view class='infoBox'>
+            <view style='width:135rpx'>状态:</view>
+            <view style='width:215rpx'>{{titleList[customerCommunication[0].state]}}</view>
+          </view>
+        <view class='infoBox'>
           <view style='width:100rpx'>渠道：</view> 
           <view style='width:250rpx'>{{propertyData[customerInfo.property]}}</view>
         </view>
@@ -122,7 +126,7 @@
       <view class='flexRow  activityRecord communicationList' wx:if='{{customerCommunication.length>0}}'>
       <view class='communicationTime'>{{item.communicate_time}}</view>
       <view class='communicationContent'>{{item.communicate_content}}</view>
-      <view class='communicationStatus'></view>
+      <view class='communicationStatus'>{{titleList[item.state]}}</view>
     </view>
     </block>
     <view class='make_order addLog' bindtap='openCreateOrder' data-customerId='{{customerInfo.customerId}}' data-type='open'>增加记录</view>

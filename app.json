@@ -4,11 +4,13 @@
     "pages/index/index",
     "pages/template/template",
     "pages/work/index/work",
-    "pages/myself/myself_commission/myself",
+    "pages/myself/myself/myself",
     "pages/work/knowledge/new_list/new_list",
     "pages/work/knowledge/new_detail/new_detail",
     "pages/work/customer_manager/user_file/user_file",
-    "pages/work/customer_manager/customer_detail/customer_detail"
+    "pages/work/customer_manager/customer_detail/customer_detail",
+    "pages/myself/erweima/erweima",
+    "pages/work/order_manager/order_manager"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -36,7 +38,7 @@
           "text": "工作台"
         },
         {
-          "pagePath": "pages/myself/myself_commission/myself",
+          "pagePath": "pages/myself/myself/myself",
           "iconPath": "pages/images/page_login/my.png",
           "selectedIconPath": "pages/images/page_login/selectMy.png",
           "text": "我的"

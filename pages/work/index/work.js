@@ -179,7 +179,7 @@ Page({
     var skipUrl = skipUpContent.url;   //路径
     var skipType = skipUpContent.type;  //类型
     var types = skipUpContent.types;  //类型
-    
+    console.log(skipUrl)
     app.skipUpTo(skipUrl, skipType);
   
   },

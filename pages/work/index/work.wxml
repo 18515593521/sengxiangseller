@@ -9,66 +9,11 @@
 </block>
 </view>
 
-<view hidden='{{taskList}}'>
-<!--今日数据-->
-  <view class='data_title'>今日数据</view>
-  <view class='datas_list'>
-    <view  class='datas_list_item' bindtap='skipUpTo' data-type='1' data-url='/pages/work/order_manager/order_manager'>
-      <image src='/pages/images/work/tody_data/order.png' class='data_icon' style='margin-right:20rpx'></image>
-      <view class='data_name'>新增订单</view>
-      <view class='data_num' style='text-align:right'>{{todayDatas.orderNum}}</view>
-      <image src='/pages/images/right.png' class='right_icon' style='margin-left:20rpx'></image>
-    </view>
-    <view  class='datas_list_item'  bindtap='skipUpTo' data-type='1' data-url='/pages/work/customer_manager/user_file/user_file'>
-      <image src='/pages/images/work/tody_data/user.png' class='data_icon' style='margin-right:20rpx'></image>
-      <view class='data_name'>邀请客户</view>
-      <view class='data_num' style='text-align:right'>{{todayDatas.customerNum}}</view>
-      <image src='/pages/images/right.png' class='right_icon' style='margin-left:20rpx'></image>
-    </view>
-    <view  class='datas_list_item'>
-      <image src='/pages/images/work/tody_data/share.png' class='data_icon' style='margin-right:20rpx'></image>
-      <view class='data_name'>分享次数</view>
-      <view class='data_num' style='text-align:right'>{{todayDatas.shareNum}}</view>
-      <view  class='right_icon' style='margin-left:20rpx'></view>
-      <!-- <image src='/pages/images/right.png' class='right_icon' style='margin-left:20rpx'></image> -->
-    </view>
-    <view  class='datas_list_item'>
-      <image src='/pages/images/work/tody_data/coupon.png' class='data_icon' style='margin-right:20rpx'></image>
-      <view class='data_name'>新增买卡数</view>
-      <view class='data_num' style='text-align:right'>{{todayDatas.buyCardNum}}</view>
-      <view  class='right_icon' style='margin-left:20rpx'></view>
-      <!-- <image src='/pages/images/right.png' class='right_icon' style='margin-left:20rpx'></image> -->
-    </view>
-  </view>
-  <!--报备客户电话-->
-  <view style='background:#f9f9f9;padding:40rpx 0;box-sizing:border-box'>
-    <view class='report_phone' bindtap='user_phone_pop'>报备客户电话</view>
-  </view>
-  <!--报备客户的弹框-->
-  <view class='report_user' hidden='{{_popUp}}'>
-    <view class='report_box'>
-      <view style='height:320rpx;'>
-        <view class='user_info_box' style='margin-top:20rpx;'>
-            <view class='user_info_name'>客户姓名</view>
-            <input type='text' value='{{_name}}'  placeholder-style="color:#999;margin-left:20rpx;" data-param= '_name'  bindinput="user_infos"  placeholder="请输入客户姓名" class='user_name'></input>
-        </view>
-        <view class='user_info_box'>
-            <view class='user_info_name'>联系方式</view>
-            <input type='number' value='{{_phone}}'  placeholder-style="color:#999;margin-left:20rpx;"  bindinput="user_infos"   data-param="_phone" placeholder="请输入联系方式" class='user_name' confirm-type='done'></input>
-        </view>
-      </view>
-      <view class='operation_box'>
-        <view class='cancel' style='color:#666' bindtap='cancel_operation'>取消</view>
-        <view class='sure' style='background:#4abdc2;color:#fff;' bindtap='sure_operation'>确定</view>
-      </view>
-    </view>
-  </view>
-</view>
 
 <!--今日数据-->
   <view class='data_title'>今日数据</view>
   <view class='datas_list'>
-    <view  class='datas_list_item' bindtap='skipUpTo' data-type='1' data-url='/pages/work/order_manager/order_manager'>
+    <view  class='datas_list_item' bindtap='skipUpTo' data-type='1' data-url='/pages/work/order_manager/order_manager?skipType=1'>
       <image src='/pages/images/work/tody_data/order.png' class='data_icon' style='margin-right:20rpx'></image>
       <view class='data_name'>新增订单</view>
       <view class='data_num' style='text-align:right'>{{todayDatas.orderNum}}</view>
