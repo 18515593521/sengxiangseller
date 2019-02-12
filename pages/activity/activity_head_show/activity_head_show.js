@@ -1,4 +1,5 @@
 // pages/activity/activity_head_show/activity_head_show.js
+const app = getApp()
 Page({
 
   /**
@@ -13,18 +14,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var value = wx.getStorageSync('activity_head'); //获取请求的
 
-    if (value.pictures.length>0){
       this.setData({
-        headImgNum: value.pictures,  //数据
-        img_show_hide:true
+        activityId: options.activityId,  //数据
       })
-    }else{
-      this.setData({
-        img_show_hide: false
-      })
-    }
+    this.getActivityData(options.activityId)
+    
   },
 
   /**
@@ -38,7 +33,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    
   },
 
   /**
@@ -74,5 +69,39 @@ Page({
    */
   onShareAppMessage: function () {
   
-  }
+  },
+  //获取活动详情的信息
+  getActivityData: function (activityId) {
+    var thisPage = this;
+    wx.request({
+      url: app.globalData.domainName + 'app/selectHelperActivityDetails',
+      data: {           //请求参数      
+        id: thisPage.data.activityId,
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      method: 'POST',
+      success: function (res) {
+        var resData = res.data;
+        if (resData.code == 0) {
+          if (resData.result.item.length > 290) {
+            var items = resData.result.item;
+            resData.result.item = items.slice(0, 290);
+            console.log(resData.result.item);
+          }
+          thisPage.setData({
+            activityData: resData.result,
+            orderData: resData.result.order
+          })
+        } else {
+          console.log('活动详情接口请求失败！');
+        }
+
+      },
+      fail: function (res) {
+        console.log(res + '失败！');
+      }
+    })
+  },
 })

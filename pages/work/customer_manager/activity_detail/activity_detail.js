@@ -1,5 +1,5 @@
 const app = getApp()
-var urls = app.globalData.domainName;        //请求域名
+
 Page({
 
   /**
@@ -28,7 +28,7 @@ Page({
   getActivityData:function(e){
     var thisPage = this;
     wx.request({
-      url: urls + '/app/selectHelperActivityDetails',
+      url: app.globalData.domainName + 'app/selectHelperActivityDetails',
       data: {           //请求参数      
         id: thisPage.data.activityId,
         customer_id: thisPage.data.customerId

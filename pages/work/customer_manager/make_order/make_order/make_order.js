@@ -249,11 +249,12 @@ Page({
 getActivityOrderInfo:function(){
   var thisPage = this;
   wx.request({
-    url: urlPage + '/app/createOrder',
+    url: urlPage + 'app/createOrder',
     data: {           //请求参数      
       activityId: thisPage.data.activityId,  //活动id
       filialeId: app.globalData.userInfo.filialeId ,  //分公司id app.globalData.user_Info.filialeId 
-      customerId: thisPage.data.customerId  //客户di
+      customerId: thisPage.data.customerId,  //客户di
+      orderCode :'11111'
     },
     header: {
       'content-type': 'application/json' // 默认值
@@ -288,11 +289,11 @@ getActivityOrderInfo:function(){
        
         thisPage.setData({
           ActivityOrderInfo: resDataObj,
-          typistName: app.globalData.user_Info.userInfo.name,  //打单员名字
-          typistPhone: app.globalData.user_Info.userInfo.phone,  //打单员电话
-          typistId: app.globalData.user_Info.user_id,
+          typistName: app.globalData.userInfo.name,  //打单员名字
+          typistPhone: app.globalData.userInfo.phone,  //打单员电话
+          typistId: app.globalData.userInfo.id,
           sellerId: resDataObj.sellerId,  //销售id
-          shopId: resDataObj.shopId ? resDataObj.shopId : app.globalData.user_Info.shop_id,   //店铺id
+          shopId: resDataObj.shopId ? resDataObj.shopId : app.globalData.userInfo.shop_id,   //店铺id
           _name: _name ? _name:'' ,   //收件人姓名
           _phone: _phone ? _phone:'' ,  //收件人电电话
           _address: _address ? _address:'',  //收货地址

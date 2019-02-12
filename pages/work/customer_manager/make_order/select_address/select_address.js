@@ -1,6 +1,6 @@
 //获取应用实例
 const app = getApp()
-var url = app.globalData.domainName;        //请求域名 
+
 Page({
 
   /**
@@ -59,7 +59,7 @@ Page({
   getLinkMan:function(){
   var thisPage = this;
   wx.request({
-    url: url + '/app/selectCustomerAddress1',
+    url: app.globalData.domainName + 'app/selectCustomerAddress',
     data: {           //请求参数      
       customer_id: thisPage.data.customer_id  //用户id
     },

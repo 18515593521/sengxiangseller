@@ -390,9 +390,9 @@ Page({
     wx.request({
       url: app.globalData.domainName + 'app/selectSellerCustomerDetail',
       data: { //请求参数      
-        shopId: app.globalData.userInfo.shop_id, //店铺id
         sellerId: app.globalData.userInfo.id, //导购id
-        customerId: thisPage.data.customer_Id //用户id
+        customerId: thisPage.data.customer_Id, //用户id
+        shopId: app.globalData.userInfo.shop_id
       },
       header: {
         'content-type': 'application/json' // 默认值
@@ -440,7 +440,7 @@ Page({
       makeOrder: true
     })
 
-    var skipUrl = '/pages/work/customer_manager/make_order/make_order/make_order'; //跳转的地址
+    
     if (ordertype == 1) {
       skipUrl = skipUrl + '?activityId=' + '&customerId=' + this.data.customerId + '&orderType=2' + '&editType=add' + '&pageFrom=activity';
       app.skipUpTo(skipUrl, 2);
@@ -449,12 +449,15 @@ Page({
     }
   },
   //获取当前用户是否有参加活动
-  getActivity: function(customerId, skipUrls) {
+  getActivity: function() {
     var thisPage = this;
+    var skipUrls = '/pages/work/customer_manager/make_order/make_order/make_order'; //跳转的地址
+   
     wx.request({
       url: app.globalData.domainName + 'app/selectCustomerActivity',
       data: { //请求参数      
-        customerId: customerId //用户id
+        customerId: thisPage.data.customer_Id, //用户id
+        shopId: app.globalData.userInfo.shop_id
       },
       header: {
         'content-type': 'application/json' // 默认值
@@ -468,7 +471,7 @@ Page({
         } else {
           if (res.data.result.length == 1) { //一个自动取第一个（目前） 多个的话用户自己选择（后期）
             var activityId = res.data.result[0].activity_id;
-            var skipUrl = skipUrls + '?activityId=' + activityId + '&customerId=' + thisPage.data.customerId + '&orderType=1' + '&editType=add' + '&pageFrom=activity';
+            var skipUrl = skipUrls + '?activityId=' + activityId + '&customerId=' + thisPage.data.customer_Id + '&orderType=1' + '&editType=add' + '&pageFrom=activity';
             app.skipUpTo(skipUrl, 1);
           }
         }

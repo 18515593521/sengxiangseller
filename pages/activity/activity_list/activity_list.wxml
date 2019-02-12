@@ -1,0 +1,35 @@
+<import src="../../../template/modalBox/modalBox.wxml" />
+<!--index.wxml-->
+<view class="pannel menu">
+  <view class="menuCell {{activeArr[0]}}" style='border-color:{{activeArr[0]?active:""}};color:{{activeArr[0]?active:""}}' data-value="0" bindtap="chooseMenu">当前活动</view>
+  <view class="menuCell {{activeArr[1]}}" style='border-color:{{activeArr[1]?active:""}};color:{{activeArr[1]?active:""}}' data-value="1" bindtap="chooseMenu">往期活动</view>
+</view>
+
+<block wx:for='{{menuContentHiddenArr}}' wx:for-item='shops' wx:for-index='indexs' wx:key='*this'>
+  <view class="{{activity_boxsss[activityType]}}" hidden='{{menuContentHiddenArr[indexs]}}'>
+    <block wx:for="{{activityList}}" wx:for-item="item" wx:key="image">
+      <view style='position:relative;'>
+        <view class='activit_list' data-activity_id="{{item.id}}" data-type='1' data-activityType='{{item.type}}' bindtap='skipUpTo'>
+          <block wx:if="{{isType == 1}}">
+            <image src='{{item.blockurl}}' class='activity_img' mode='widthFix'></image>
+          </block>
+          <block wx:if="{{isType == 2}}">
+            <image src='{{item.imgurl}}' class='activity_img' mode='widthFix'></image>
+          </block>
+          <view class=' flexRow justAround'>
+            <view class='flexColumnH justAround'>
+              <view class='activity_name'>活动名称: {{item.name}}</view>
+              <view class='activity_text'>创建时间: {{item.start_time}}---{{item.end_time}}</view>
+            </view>
+            <view class='activity_btn'>
+              活动详情
+            </view>
+          </view>
+
+        </view>
+      </view>
+
+    </block>
+  </view>
+
+</block>

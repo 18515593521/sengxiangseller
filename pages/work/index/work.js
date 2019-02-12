@@ -39,7 +39,7 @@ Page({
       {
         url: 'daily.jpg',
         title: '活动管理',
-        go_to_url: '/pages/activity/activity_head_show/activity_head_show',
+        go_to_url: '/pages/activity/activity_list/activity_list',
         indexPage: '1',
         types: 'product',
       },

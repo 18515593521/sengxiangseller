@@ -19,7 +19,12 @@
     "pages/myself/phone/phone",
     "pages/myself/complete_phone/complete_phone",
     "pages/activity/activity_head_show/activity_head_show",
-    "pages/work/customer_manager/make_order/make_order/make_order"
+    "pages/work/customer_manager/make_order/make_order/make_order",
+    "pages/work/customer_manager/make_order/select_address/select_address",
+    "pages/work/customer_manager/product_type/product_type",
+    "pages/activity/activity_list/activity_list",
+    "pages/activity/activity_details/activity_details",
+    "pages/work/customer_manager/activity_detail/activity_detail"
   ],
   "window":{
     

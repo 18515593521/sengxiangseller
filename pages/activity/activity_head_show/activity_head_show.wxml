@@ -1,9 +1,47 @@
 <!--pages/activity/activity_head_show/activity_head_show.wxml-->
-<view class='head_show_img'>
-  <block  wx:for="{{headImgNum}}" wx:for-item="item"  wx:key="head_url">
-      <image src=' {{item.head_url}}' class='headerImgs'></image> 
-  </block>
-</view>
-<view  hidden="{{img_show_hide}}" class='no_join'>
-  <image src='/pages/images/activity/activity.png'></image>
+<view class='contina'>
+  <view class='activityLine'>活动编号：
+    <text class='textValue'></text>
+  </view>
+  <view class='activityLine'>活动名称：
+    <text class='textValue'></text>
+  </view>
+  <view class='flexRow activityBa '>
+    <view>分享次数</view>
+    <view>邀约次数</view>
+  </view>
+  <view class='flexRow activityBa1'>
+    <view>
+      <text class='textValue'> 0</text>
+      <text> 次</text> </view>
+    <view>
+      <text class='textValue'> 0</text>
+      <text> 位</text>
+    </view>
+  </view>
+  <view class='flexRow activityBa '>
+    <view>签到客户</view>
+    <view>售卡量</view>
+  </view>
+  <view class='flexRow activityBa1'>
+    <view>
+      <text class='textValue'> 0</text>
+      <text> 位</text> </view>
+    <view>0
+      <text> 张</text>
+    </view>
+  </view>
+  <view class='flexRow activityBa '>
+    <view>已付金额</view>
+    <view>订单数量</view>
+  </view>
+  <view class='flexRow activityBa1'>
+    <view>
+      <text class='textValue'> 0</text>
+      <text> 元</text> </view>
+    <view>
+      <text class='textValue'> 0</text>
+      <text> 单</text>
+    </view>
+  </view>
 </view>
