@@ -38,7 +38,7 @@
 .makeCard{
   width:180rpx;
   height:60rpx;
-  background: #4abdc2;
+  background: #0074c1;
   color:#fff;
   font-size:24rpx;
   text-align:center;
@@ -50,7 +50,7 @@
 .sharecontents{
   width:600rpx;
   height:380rpx;
-  border:2rpx solid #4abdc2;
+  border:2rpx solid #0074c1;
   border-radius:10rpx;
   overflow:hidden;
   margin:auto;
@@ -69,7 +69,7 @@
   text-align:center;
   font-size:26rpx;
   color:#fff;
-  background:#4abdbf;
+  background:#0074c1;
 }
 .sure{
   border:0;
@@ -90,7 +90,7 @@
   width:100%;
   height:80rpx;
   float:left;
-  border-top:2rpx solid #4abdc2;
+  border-top:2rpx solid #0074c1;
 }
 .btnsBox{
   width: 100%;

@@ -53,8 +53,8 @@
   line-height:80rpx;
 }
 .list .active{
-  border-bottom:2rpx solid #4abdc2;
-  color:#4abdc2;
+  border-bottom:2rpx solid #0074c1;
+  color:#0074c1;
 }
 .search_box{
   height:100rpx;
@@ -150,9 +150,9 @@
   height:50rpx;
   line-height:50rpx;
   text-align:center;
-  color:#4abdc2;
+  color:#0074c1;
   font-size:24rpx;
-  border:2rpx solid #4abdc2;
+  border:2rpx solid #0074c1;
   border-radius:10rpx;
   margin-top:10rpx;
 }
@@ -186,7 +186,7 @@
   width: 750rpx;
   height: 124rpx;
   line-height: 124rpx;
-  background-color: #4abdc2;
+  background-color: #0074c1;
   text-align: center;
   color: #fff;
   font-size: 30rpx;

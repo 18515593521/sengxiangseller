@@ -156,7 +156,7 @@
 }
 .editOrders{
   font-size:24rpx;
-  color:#4abdc2;
+  color:#0074c1;
   margin-left:40rpx;
   width:100rpx;
   height:100%;

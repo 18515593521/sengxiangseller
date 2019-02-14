@@ -64,7 +64,7 @@ box-sizing:border-box;
   float:left;
 }
 .apply_text{
-  color:#4abdbf;
+  color:#0074c1;
   font-size:30rpx;
   text-align:center;
 }

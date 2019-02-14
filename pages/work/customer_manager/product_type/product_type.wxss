@@ -38,7 +38,7 @@
   line-height:80rpx;
   text-align:center;
   color:#fff;
-  background:#4abdc2;
+  background:#0074c1;
   margin:300rpx auto;
   font-size:26rpx;
 }

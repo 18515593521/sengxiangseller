@@ -25,7 +25,7 @@ Page({
         pageSize: thisPage.data.pageSize,
         ispage: true,    //是否分页
         param: {
-          
+          user_id: app.globalData.userInfo.shop_id
         }
       },
       header: {

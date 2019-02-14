@@ -70,8 +70,8 @@
   bottom:0;
   text-align:center;
   z-index:10000000;
-  /* border:2rpx solid #4abdc2;
-  background:#4abdc2;
+  /* border:2rpx solid #0074c1;
+  background:#0074c1;
   opacity:0.5; */
 
 }

@@ -63,20 +63,7 @@
     </view>
   </view>
 
-  <view class='activity_rule'>
-    <view class='activity_title'>
-      <view class='mark'></view>
-      <view class='mark_title'>往期活动</view>
-    </view>
-    <view style='margin-bottom:80rpx'>
-      <scroll-view scroll-x="true" style='height:200rpx;' class='scroll_view_activity'>
-        <view class='activity_list' wx:for="{{pastActivityDataGuide}}" wx:for-item="item" wx:key="imgurl" bindtap='skips' data-ids='{{item.id}}'>
-          <image src='{{item.imgurl}}'></image>
-          <view class='activity_view_name'>{{item.name}}</view>
-        </view>
-      </scroll-view>
-    </view>
-  </view>
+ 
 
 </view>
 <view class='makeCard' bindtap='maskPopup' hidden='{{makeCard}}'>分享</view>
@@ -109,7 +96,7 @@
       <!-- <input type='text' data-values='{{shareName}}' maxlength='18' bindinput='editShareValues' class='inputMBox'/> -->
     </view>
     <view class='textBtn flexRow'>
-      <view class='care' style='color:#4abdbf;background:#fff' data-values='1' bindtap='editShare'>取消</view>
+      <view class='care' style='color:#0074c1;background:#fff' data-values='1' bindtap='editShare'>取消</view>
       <button class='sure' data-values='2' open-type='share' bindtap='editShare'>确定</button>
       <!-- <view class='sure' data-values='2' bindtap='editShare'>确定</view> -->
     </view>

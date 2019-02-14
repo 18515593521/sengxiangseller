@@ -15,6 +15,8 @@ Page({
     customerCommunication: [], //导购通讯
     customerEvaluate: [], //用户的评价
     customerOrder: [], //用户订单
+    _popUp:true,
+    _code:'',
     propertyData: ['全部渠道', '公司分配', '邀请注册'], //来源
     titleList: ['', '已联系', '已进店', '已购卡', '已订单', '已活动', '已物流', '已安装', '售后中', '已关闭', '未接通'], //1已联系、2、已进店、3已购卡、4已订单、5已活动、6 已物流、7已安装、8售后中、9 已关闭、10未接通
     orderState: ["", "待支付", "待安装", "已完成", "关闭"],
@@ -471,7 +473,7 @@ Page({
         } else {
           if (res.data.result.length == 1) { //一个自动取第一个（目前） 多个的话用户自己选择（后期）
             var activityId = res.data.result[0].activity_id;
-            var skipUrl = skipUrls + '?activityId=' + activityId + '&customerId=' + thisPage.data.customer_Id + '&orderType=1' + '&editType=add' + '&pageFrom=activity';
+            var skipUrl = skipUrls + '?activityId=' + activityId + '&customerId=' + thisPage.data.customer_Id + '&orderType=1' + '&editType=add' + '&pageFrom=activity&orderCode=' + thisPage.data._code;
             app.skipUpTo(skipUrl, 1);
           }
         }
@@ -605,5 +607,37 @@ Page({
     console.log(skipUrl)
     app.skipUpTo(skipUrl, skipType);
 
+  },
+  //弹框
+  user_phone_pop: function () {
+    var thisPage = this;
+    thisPage.setData({
+      _popUp: false   //数据
+    })
+  },
+  //取消
+  cancel_operation: function () {
+    var thisPage = this;
+    thisPage.setData({
+      _popUp: true,  //数据
+      _name: null,
+      _phone: null
+    })
+  },
+  sure_operation: function () {
+    var thisPage = this;
+    if (!thisPage.data._code) {
+      app.showWarnMessage("请输入订单编号！");  //失败
+      return;
+    }
+    thisPage.getActivity();
+  },
+  user_infos: function (e) {
+    var current = e.currentTarget;
+    var key = current.dataset.param;
+    var value = e.detail.value;
+    var obj = {};
+    obj[key] = value;
+    this.setData(obj);
   },
 })

@@ -118,49 +118,10 @@
     </view>
   </view>
 </view>
-<!--优惠券-->
-<view class='flexColumnH addressBoxs' hidden='{{isCanedit}}'>
-  <view class='selectSale flexRow' bindtap='selectToTicket' data-type='1' hidden='{{!ActivityOrderInfo.hb}}'>
-    <view class='selectName'>选择红包</view>
-    <view class='selectContent' >{{selectToData[1].denomination?'-'+selectToData[1].denomination:''}}</view>
-    <image src='/pages/images/right.png' class='rights'></image>
-  </view>
-  <view class='selectSale flexRow'  bindtap='selectToTicket' data-type='2' hidden='{{!ActivityOrderInfo.yhq}}'>
-    <view class='selectName'>选择优惠券</view>
-    <view class='selectContent'>{{selectToData[2].denomination?'-'+selectToData[2].denomination:''}}</view>
-    <image src='/pages/images/right.png' class='rights'></image>
-  </view>
-  <view class='selectSale flexRow'  bindtap='selectToTicket' data-type='3'  hidden='{{!ActivityOrderInfo.zkq}}'>
-    <view class='selectName'>选择折扣券</view>
-    <view class='selectContent'>{{selectToData[3].denomination?selectToData[3].denomination+'折':''}}</view>
-    <image src='/pages/images/right.png' class='rights' ></image>
-  </view>
 
-</view>
-<!--选择优惠-->
-<view class='positionBox' hidden='{{showHidePop}}'>
-  <view class='pop_up_box flexColumnH'>
-      <view class='selectTile'>{{selectData[selectType].title}}</view>
-      <scroll-view scroll-y='true' style='height:590rpx'>
-        <view class='selectList flexColumnH' >
-          <block wx:for = '{{ActivityOrderInfo[selectData[selectType].key]}}' wx:for-item = 'item' wx:key='use_condition' wx:for-index='index'>
-            <view  class='selectItem flexRow' style='height:80rpx'>
-                <view class='fullSubtract' wx:if='{{selectData[selectType].key=="hb"}}'>可使用红包{{item.denomination}}元</view>
-                <view class='fullSubtract' wx:if='{{selectData[selectType].key=="yhq"}}' >满{{item.use_condition}}减{{item.denomination}}</view>
-                <view class='fullSubtract' wx:if='{{selectData[selectType].key=="zkq"}}'>满{{item.use_condition}}打{{item.denomination}}折</view>
-                <image src='/pages/images/select.png' bindtap='selectToValue' class='selectImg' data-id='{{item.id}}'  wx:if='{{item.choose}}' data-opaction = '1'></image>
-                <image src='/pages/images/noSelect.png'  bindtap='selectToValue' class='selectImg'  wx:else  data-id='{{item.id}}' data-opaction = '0'></image>              
-            </view>           
-          </block>
-        </view>
-      </scroll-view>
-      <view class='submit' bindtap='cancelPop'>关闭</view>
-  </view>
-</view>
 <!--实收金额-->
 <view style='overflow:hidden'>
     <view class='totalSalePrice' style='line-height:80rpx'>订单总额：￥{{showPrice}}</view>
-    <view class='sale' style='line-height:80rpx'>已优惠：￥{{showValues?showValues:0}}</view>
 </view>
 <!--备注-->
 <view class='flexColumnH'>
@@ -168,7 +129,7 @@
       <image src='/pages/images/wenhao.png' class='wenhao'></image>
       <view >备注</view>
   </view>
-  <textarea class='remarkText paddingBox'  disabled='{{editType=="look"}}' value='{{remarkText}}' maxlength='-1' placeholder='请输入内容'  bindinput='writeText'  hidden='{{textareHidea}}'></textarea>
+  <textarea class='remarkText paddingBox'  value='{{remarkText}}' maxlength='-1' placeholder='请输入内容'  bindinput='writeText'  ></textarea>
 </view>
 <!--说明-->
 <view class='flexColumnH'>
@@ -176,21 +137,21 @@
       <image src='/pages/images/gantanhao.png' class='wenhao'></image>
       <view >说明</view>
   </view>
-  <view class='explain'>{{ActivityOrderInfo.explain?ActivityOrderInfo.explain:'暂无'}}</view>
+  <textarea class='remarkText paddingBox'  value='{{explain}}' maxlength='-1' placeholder='请输入内容'  bindinput='writeText'  ></textarea>
 </view>
 <!--专属店员-->
   <view class='flexColumnH belongTo paddingBox'>
     <view class='flexRow'>
-      <view class='item'>专属店员姓名:{{ActivityOrderInfo.sellerName}}</view>
-      <view class='item'>专属店员电话:{{ActivityOrderInfo.sellerPhone}}</view>
+      <view class='item'>专属店员姓名:{{typistName}}</view>
+      <view class='item'>专属店员电话:{{typistPhone}}</view>
     </view>
-    <view  class='flexRow'>
+    <!-- <view  class='flexRow'>
        <view  class='item'>打单员:{{typistName}}</view>
       <view  class='item'>打单员电话:{{typistPhone}}</view>
-    </view>
+    </view> -->
   </view>
 <!--提交按钮-->
-<view class='submit' bindtap='submitData' hidden='{{editType=="look"}}'>提交</view>
+<view class='submit' bindtap='submitData'>提交</view>
 
 <!--地址弹框-->
   <view class="pickerViewContainer" hidden='{{addressPicker_hidden}}'>

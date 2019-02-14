@@ -204,6 +204,7 @@ Page({
     this.setData({
       activityId: options.activityId,
       customerId: options.customerId,
+      orderCode: options.orderCode,
       showHideActivity: values, 
       orderType: orderType,  //订单的类型（销售订单、活动订单）
       totalPriceInfo: totalPriceInfo,   //产品数据
@@ -254,7 +255,7 @@ getActivityOrderInfo:function(){
       activityId: thisPage.data.activityId,  //活动id
       filialeId: app.globalData.userInfo.filialeId ,  //分公司id app.globalData.user_Info.filialeId 
       customerId: thisPage.data.customerId,  //客户di
-      orderCode :'11111'
+      orderCode: thisPage.data.orderCode
     },
     header: {
       'content-type': 'application/json' // 默认值
@@ -266,9 +267,9 @@ getActivityOrderInfo:function(){
       if (resData.code == 0) {
         var obj = {};
         var resDataObj = resData.result;  
-        var _name = resDataObj.consignee;  //姓名
-        var _phone = resDataObj.consigneePhone;  //电话
-        var _address = resDataObj.address;  //地址
+         var _name = ''
+         var _phone = ''
+         var _address = ''
 
         if (thisPage.data._name){
           _name = thisPage.data._name;
@@ -298,19 +299,8 @@ getActivityOrderInfo:function(){
           _phone: _phone ? _phone:'' ,  //收件人电电话
           _address: _address ? _address:'',  //收货地址
         })
+      
         
-        var cansOne1 = wx.getStorageSync('cansOne1');  //满减红包的使用
-        var cansOne2 = wx.getStorageSync('cansOne2');  //优惠券的使用
-        var cansOne3 = wx.getStorageSync('cansOne3');  //折扣券的使用
-        if (cansOne1) {
-          thisPage.selectToValue2(cansOne1.id, 0, 1);  //选择优惠券(点击具体优惠券-红包)
-        }
-        if (cansOne2) {
-          thisPage.selectToValue2(cansOne2.id, 0, 2);  //选择优惠券(点击具体优惠券-优惠券)
-        }
-        if (cansOne3) {
-          thisPage.selectToValue2(cansOne3.id, 0, 3);  //选择优惠券(点击具体优惠券-折扣券)
-        } 
       } else if (resData.code == 1){
        
       }

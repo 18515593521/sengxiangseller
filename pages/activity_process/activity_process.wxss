@@ -24,7 +24,7 @@
   height:60rpx;
   display:block;
   border-radius:20rpx;
-  background:#4abdc2;
+  background:#0074c1;
   color:#fff;
   font-size:26rpx;
   text-align:center;
@@ -168,8 +168,8 @@
   border-radius:10rpx;
 }
 .canMake{
-  border:2rpx solid #4abdc2;
-  color:#4abdc2;
+  border:2rpx solid #0074c1;
+  color:#0074c1;
 }
 .noMake{
   border-radius:2rpx solid #999;

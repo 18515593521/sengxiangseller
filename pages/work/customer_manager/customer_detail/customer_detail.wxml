@@ -35,7 +35,7 @@
         </view>
       </view>
     </view>
-    <view class='make_order' bindtap='getActivity' data-customerId='{{customerInfo.customerId}}' data-type='open'>生成订单</view>
+    <view class='make_order' bindtap='user_phone_pop' data-customerId='{{customerInfo.customerId}}' data-type='open'>生成订单</view>
     <!--生成订单-->
     <view class='make_order_box' hidden='{{makeOrder}}'>
       <view class='order_class_box'>
@@ -154,6 +154,22 @@
       <view class='make_order_operation flexRow'>
         <view class='cancel' data-type='close' bindtap='cause_box'>取消</view>
         <view class='sure' data-type='close' bindtap='sure_cause_box'>确认</view>
+      </view>
+    </view>
+  </view>
+
+    <!--报备客户的弹框-->
+  <view class='report_user' hidden='{{_popUp}}'>
+    <view class='report_box'>
+      <view style='height:200rpx;'>
+        <view class='user_info_box' style='margin-top:20rpx;'>
+            <view class='user_info_name'>订单编号</view>
+            <input type='text' value='{{_}}'  placeholder-style="color:#999;margin-left:20rpx;" data-param= '_code'  bindinput="user_infos"  placeholder="请输入订单编号" class='user_name'></input>
+        </view>
+      </view>
+      <view class='operation_box'>
+        <view class='cancel' style='color:#666' bindtap='cancel_operation'>取消</view>
+        <view class='sure' style='background:#0074c1;color:#fff;' bindtap='sure_operation'>确定</view>
       </view>
     </view>
   </view>

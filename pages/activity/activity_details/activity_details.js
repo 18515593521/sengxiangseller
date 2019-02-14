@@ -1,5 +1,5 @@
 const app = getApp()
-var urls = app.globalData.domainName;        //请求域名
+
 var WxParse = require('../../../pages/plugs/wxParse/wxParse.js');
 const ctx = wx.createCanvasContext('myCanvas');
 Page({
@@ -49,7 +49,7 @@ Page({
     var thisPage = this;
 
     wx.request({
-      url: urls + '/app/makeQRCode ', //
+      url: app.globalData.domainName + 'app/makeQRCode ', //
       data: {           //请求参数  
         P1: 'G',
         P2: thisPage.data.activityId,
@@ -94,7 +94,7 @@ Page({
   activityDeatils:function(){
     var thisPage = this;
     wx.request({
-      url: urls + '/app/selectHelperActivityAll', //
+      url: app.globalData.domainName + 'app/selectHelperActivityAll', //
       data: {           //请求参数      
         id: thisPage.data.activityId
       },
@@ -124,7 +124,11 @@ Page({
   //参与人的头像
   skip_to_head:function(){
     var thisPage = this;
-    var skipUrl = "/pages/activity/activity_head_show/activity_head_show" ;   //路径
+    if (thisPage.data.activityDetailData.pictures.length<=0){
+        app.showWarnMessage('暂无人报名！');
+        return false;
+    }
+    var skipUrl = "/pages/activity/activity_head_shows/activity_head_shows" ;   //路径
     var skipType = 1;  //类型
     app.skipUpTo(skipUrl, skipType);   //跳转 
   },
@@ -132,7 +136,7 @@ Page({
   come_go_activity:function(){
     var thisPage = this;
     wx.request({
-      url: urls + '/app/selectHelperHistoryActivityPage', 
+      url: app.globalData.domainName + 'app/selectHelperHistoryActivityPage', 
       data: {           //请求参数      
         ispage: false,
         shop_id: app.globalData.user_Info.shop_id // 店铺ID
@@ -162,7 +166,7 @@ Page({
   comeGoActivityAcess: function () {
     var thisPage = this;
     wx.request({
-      url: urls + '/app/selectShopHistoryActivity',
+      url: app.globalData.domainName + 'app/selectShopHistoryActivity',
       data: {           //请求参数      
         ispage: false,
         shopId: app.globalData.user_Info.shop_id, // 店铺ID
@@ -228,13 +232,11 @@ Page({
     })
     
     thisPage.activityDeatils(); //活动内容详情
-    if (app.globalData.user_Info.user_limits_role =='seller'){ //导购
-      thisPage.come_go_activity();  //导购身份登录
-    } else {  //后台账号登录
-      thisPage.comeGoActivityAcess(); //后台账号登录
-    }
-    thisPage.getErWeiMa();   //请求二维码
-    thisPage.getActivityTemplate();  //请求活动模板
+ 
+
+
+    //thisPage.getErWeiMa();   //请求二维码
+
    
   },
   //往期活动跳转活动详情
@@ -293,8 +295,8 @@ Page({
 
       app.skipUpTo('/pages/work/product_center/share_product_img/share_product_img?' + parms, 1);
     } else {
-      thisPage.getErWeiMa();   //请求二维码
-      thisPage.getActivityTemplate();  //请求活动模板
+      //thisPage.getErWeiMa();   //请求二维码
+      
       app.showWarnMessage('生成出错,点击重试！');
     }
   },

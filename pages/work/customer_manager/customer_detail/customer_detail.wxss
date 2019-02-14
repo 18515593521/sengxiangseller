@@ -22,8 +22,8 @@
   line-height:80rpx;
 }
  .customer_list .active{
-  border-bottom:2rpx solid #4abdc2;
-  color:#4abdc2;
+  border-bottom:2rpx solid #0074c1;
+  color:#0074c1;
 }
 
 /* 客户标签  */
@@ -331,7 +331,7 @@
   line-height:60rpx;
   text-align:center;
   border-radius:10rpx;
-  background:#4abdc2;
+  background:#0074c1;
   float:right;
 }
 .make_order_box{
@@ -349,7 +349,7 @@
 .order_class_box{
   width:600rpx;
   height:380rpx;
-  border:2rpx solid #4abdc2;
+  border:2rpx solid #0074c1;
   border-radius:10rpx;
   overflow:hidden;
   margin:auto;
@@ -369,7 +369,7 @@
   width:100%;
   height:80rpx;
   float:left;
-  border-top:2rpx solid #4abdc2;
+  border-top:2rpx solid #0074c1;
 }
 .sure,.cancel{
   text-align:center;
@@ -379,16 +379,16 @@
 }
 .sure{
   color:#fff;
-  background:#4abdc2;
+  background:#0074c1;
 }
 .make_order_class view{
   margin:60rpx auto 0;
   width:400rpx;
   height:60rpx;
   line-height:60rpx;
-  color:#4abdc2;
+  color:#0074c1;
   text-align:center;
-  border:2rpx solid #4abdc2;
+  border:2rpx solid #0074c1;
   font-size:28rpx;
 }
 /*活动记录*/
@@ -581,7 +581,7 @@
 .close_order_boxs{
   width:600rpx;
   height:500rpx;
-  border:2rpx solid #4abdc2;
+  border:2rpx solid #0074c1;
   background:#fff;
   overflow:hidden;
 }
@@ -594,7 +594,7 @@
 }
 .editOrders{
   font-size:24rpx;
-  color:#4abdc2;
+  color:#0074c1;
   margin-left:40rpx;
   width:80rpx;
   height:100%;
@@ -631,3 +631,62 @@
   width: 200rpx;
 }
 
+.report_user{
+  background:rgba(183, 183, 183, 0.5);
+  position:fixed;
+  top:0;
+  bottom:0;
+  margin:auto;
+  left:0;
+  right:0;
+}
+.report_box{
+  position:absolute;
+  margin:auto;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
+  width:600rpx;
+  height:280rpx;
+  border:2rpx solid #0074c1;
+  border-radius:5px;
+  display:flex;
+  flex-flow:column nowrap;
+  background:#fff;
+}
+.user_info_box{
+  padding:30rpx;
+  box-sizing:border-box;
+  display:flex;
+  flex-flow:row nowrap;
+}
+.operation_box{
+  display:flex;
+  flex-flow:row nowrap;
+  border-top:2rpx solid #0074c1;
+  height:80rpx;
+}
+.user_info_name{
+  font-size:30rpx;
+  width:150rpx;
+  height:60rpx;
+  line-height:60rpx;
+  margin-right:20rpx;
+}
+.user_name{
+  background:#fff;
+  color:#666;
+  font-size:30rpx;
+  border:2rpx solid #0074c1;
+  border-radius:5px;
+  height:60rpx;
+  width:450rpx;
+  line-height:60rpx;
+}
+.cancel,.sure{
+  font-size:30rpx;
+  text-align:center;
+  line-height:80rpx;
+  width:50%;
+}

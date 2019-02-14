@@ -10,6 +10,35 @@ padding:10rpx 20rpx;
 box-sizing:border-box;
 
 }
+
+/*活动*/
+.activity_box{
+  width:750rpx;
+  overflow:hidden;
+  height:auto;
+  background:#fff;
+}
+.activit_list{
+    width:750rpx;
+    height:auto;
+    float:left;
+    overflow:hidden;
+    border-top:10px solid #eee;
+}
+.activity_img{
+  width:750rpx;
+  height:400rpx;
+  float:left;
+}
+.activity_name{
+  line-height:18px;
+  padding:5rpx 20rpx;
+  box-sizing:border-box;
+  font-size:24rpx;
+  color:#666;
+  float:left;
+}
+
 .icon_eye{
   width:40rpx;
   height:40rpx;
@@ -44,7 +73,7 @@ box-sizing:border-box;
   float:left;
 }
 .apply_text{
-  color:#4abdbf;
+  color:#0074c1;
   font-size:30rpx;
   text-align:center;
 }
@@ -107,7 +136,7 @@ box-sizing:border-box;
 }
 .mark_title{
   font-size:32rpx;
-  color:#4abdbf;
+  color:#0074c1;
 }
 .activity_car{
   font-size:24rpx;
@@ -171,7 +200,7 @@ box-sizing:border-box;
   line-height:80rpx;
   text-align:center;
   color:#fff;
-  background:#4abdbf;
+  background:#0074c1;
   font-size:28rpx;
   position:fixed;
   bottom:0;
@@ -180,7 +209,7 @@ box-sizing:border-box;
 .sharecontents{
   width:600rpx;
   height:380rpx;
-  border:2rpx solid #4abdc2;
+  border:2rpx solid #0074c1;
   border-radius:10rpx;
   overflow:hidden;
   margin:auto;
@@ -199,7 +228,7 @@ box-sizing:border-box;
   text-align:center;
   font-size:26rpx;
   color:#fff;
-  background:#4abdbf;
+  background:#0074c1;
 }
 .sure{
   border:0;
@@ -220,7 +249,7 @@ box-sizing:border-box;
   width:100%;
   height:80rpx;
   float:left;
-  border-top:2rpx solid #4abdc2;
+  border-top:2rpx solid #0074c1;
 }
 .btnsBox{
   width: 100%;

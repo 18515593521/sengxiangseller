@@ -50,7 +50,7 @@
   font-size:30rpx;
   text-align:center;
   color:#fff;
-  background:#4abdc2;
+  background:#0074c1;
   margin:auto;
   border-radius:10rpx;
 }

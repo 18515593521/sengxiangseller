@@ -30,7 +30,7 @@
     </view>
     
     <view class='textBtn flexRow'>
-      <view class='care' style='color:#4abdbf;background:#fff' data-values='1' bindtap='editShare'>取消</view>
+      <view class='care' style='color:#0074c1;background:#fff' data-values='1' bindtap='editShare'>取消</view>
       <button class='sure' data-values='2' open-type='share' bindtap='editShare'>确定</button>
       <!-- <view class='sure' data-values='2' bindtap='editShare'>确定</view> -->
     </view>

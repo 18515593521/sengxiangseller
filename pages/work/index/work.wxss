@@ -184,7 +184,7 @@
   text-align:center;
   color:#fff;
   font-size:30rpx;
-  background:#4abdc2;
+  background:#0074c1;
   line-height:80rpx;
   border-radius:5px;
 }
@@ -206,7 +206,7 @@
   left:0;
   width:600rpx;
   height:400rpx;
-  border:2rpx solid #4abdc2;
+  border:2rpx solid #0074c1;
   border-radius:5px;
   display:flex;
   flex-flow:column nowrap;
@@ -221,7 +221,7 @@
 .operation_box{
   display:flex;
   flex-flow:row nowrap;
-  border-top:2rpx solid #4abdc2;
+  border-top:2rpx solid #0074c1;
   height:80rpx;
 }
 .user_info_name{
@@ -235,7 +235,7 @@
   background:#fff;
   color:#666;
   font-size:30rpx;
-  border:2rpx solid #4abdc2;
+  border:2rpx solid #0074c1;
   border-radius:5px;
   height:60rpx;
   width:450rpx;

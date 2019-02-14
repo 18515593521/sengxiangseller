@@ -1,21 +1,26 @@
 <!--index.wxml-->
 <view calss="activity_box">
-  <block wx:for="{{activityList}}" wx:for-item="item" wx:key="imgurl">
-    <view class='activit_list' data-url='/pages/activity/activity_details/activity_details?details={{item.id}}' data-type='1' bindtap='skipUpTo'>
-      <image src='{{item.imgurl}}' mode='widthFix' class='activity_img'></image>
-      <view class='activity_name'>{{item.name}}</view>
+  <block wx:for="{{activityList}}" wx:for-item="item" wx:key="image">
+      <view style='position:relative;'>
+        <view class='activit_list' data-activity_id="{{item.id}}" data-type='1' data-activityType='{{item.type}}' bindtap='skipUpTo' data-url='/pages/activity/activity_details/activity_details?details={{item.id}}'>
+            <image src='{{item.blockurl}}' class='activity_img' mode='widthFix'></image>
+          <view class=' flexRow justAround'>
+            <view class='flexColumnH justAround'>
+              <view class='activity_name'>活动名称: {{item.name}}</view>
+              <view class='activity_text'>创建时间: {{item.start_time}}---{{item.end_time}}</view>
+            </view>
+            <view class='activity_btn'>
+              活动详情
+            </view>
+          </view>
 
-      <view class='activity_time  flexRow justAround'>
-        <view class='activity_text'>{{item.start_time}}---{{item.end_time}}</view>
-        <view class='icon_look_num flexRow'>
-          <view class='look_num'>{{item.num}}人报名</view>
         </view>
       </view>
-    </view>
-  </block>
+
+    </block>
 </view>
 <view class='bgImages' hidden='{{noActivity}}'>
-  <image src='/pages/images/activity.jpg' hidden='{{noActivity}}'></image>
+  <image src='/pages/images/activity.png' hidden='{{noActivity}}'></image>
 </view>
 
 

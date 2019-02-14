@@ -1,7 +1,7 @@
 .integral_box{
   width:750rpx;
   height:280rpx;
-  background:#4abdc2;
+  background:#0074c1;
 }
 .score_title{
   color:#fff;

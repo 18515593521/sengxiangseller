@@ -59,7 +59,7 @@
       </view>
       <view class='operation_box'>
         <view class='cancel' style='color:#666' bindtap='cancel_operation'>取消</view>
-        <view class='sure' style='background:#4abdc2;color:#fff;' bindtap='sure_operation'>确定</view>
+        <view class='sure' style='background:#0074c1;color:#fff;' bindtap='sure_operation'>确定</view>
       </view>
     </view>
   </view>
