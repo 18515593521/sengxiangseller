@@ -473,7 +473,9 @@ Page({
         } else {
           if (res.data.result.length == 1) { //一个自动取第一个（目前） 多个的话用户自己选择（后期）
             var activityId = res.data.result[0].activity_id;
-            var skipUrl = skipUrls + '?activityId=' + activityId + '&customerId=' + thisPage.data.customer_Id + '&orderType=1' + '&editType=add' + '&pageFrom=activity&orderCode=' + thisPage.data._code;
+            var activityName = res.data.result[0].activityName;
+            var activityCode = res.data.result[0].activityCode;
+            var skipUrl = skipUrls + '?activityId=' + activityId + '&customerId=' + thisPage.data.customer_Id + '&orderType=1' + '&editType=add' + '&pageFrom=activity&orderCode=' + thisPage.data._code + '&activityName=' + activityName + '&activityCode=' + activityCode;
             app.skipUpTo(skipUrl, 1);
           }
         }

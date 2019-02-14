@@ -1,6 +1,6 @@
 <!--pages/work/customer_manager/make_order/make_order/make_order.wxml-->
 <!--活动订单-->
-<view class='activityBox flexColumnH' hidden='{{showHideActivity}}'>
+<view class='activityBox flexColumnH'>
   <view class='activityName flexRow'>
      <view>活动名称:</view>
      <view>{{ActivityOrderInfo.activityName}}</view>
@@ -38,7 +38,7 @@
       <view class='address flexRow'>
        <image class='addressImg' src='/pages/images/work/customer_info/location.png'></image>
         <view style='width:120rpx'  class='receivephone' >收货地址:</view>
-        <input type='text'  disabled='{{editType=="look"}}'  class='receivephones' style='width:520rpx' placeholder-style='color:#333;font-size:26rpx'  value='{{_address}}'  data-name='_address' bindinput='editNmae'></input>
+        <input type='text'    class='receivephones' style='width:520rpx' placeholder-style='color:#333;font-size:26rpx'  value='{{_address}}'  data-name='_address' bindinput='editNmae'></input>
       </view>
       <view class='flexRow editBox'  hidden='{{editType=="look"}}'>
         <view class='flexWidth' style='height:60rpx'></view>
@@ -62,11 +62,10 @@
       <view class='productList flexRow'>
           <image src='/pages/images/add.png' class='addImg' bindtap='addProduct' wx:if='{{index<1}}'></image>
             <image src='/pages/images/subtract.png' class='addImg'  data-index='{{index}}' bindtap='subtractProduct' wx:if='{{index>0}}'></image>
-          <view class='product_title' bindtap='skipUpTo' data-type='2'  data-url='/pages/work/customer_manager/product_type/product_type'   data-index='{{index}}'>{{item.productModel}}</view>
-          <input type='number' bindinput='eidtPriceNum'  data-index='{{index}}' value='{{item.price}}'   maxlength='10' data-type='price' class='price' wx:if='{{item.modelType ==2}}'></input><!--价格-->
-          <view class='product_title'  wx:if='{{item.modelType ==1}}'>{{item.price}}</view><!--价格-->
-          <input type='number' bindinput='eidtPriceNum' data-index='{{index}}'  value='{{item.num}}'   maxlength='10' data-type='num' class='num'  hidden='{{editType=="look"||!isCanedit2}}'></input>
-          <view class='num'   wx:if="{{editType=='look'||!isCanedit2}}" >{{item.num}}</view>
+          <input type='text' bindinput='eidtPriceNum' maxlength='10' data-type='price' class='price' ></input><!--价格-->
+          <input type='number' bindinput='eidtPriceNum' maxlength='10' data-type='price' class='price' ></input><!--价格-->
+          <input type='number'  data-index='{{index}}'  value='{{item.num}}'   maxlength='10' data-type='num' class='num' ></input>
+          <input type='number'  data-index='{{index}}'  value='{{item.num}}'   maxlength='10' data-type='num' class='num' ></input>
           <view class='product_title'>{{item.totalPrice}}</view>
       </view>      
     </block>
