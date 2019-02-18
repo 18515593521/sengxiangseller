@@ -1,7 +1,7 @@
 
 <view class="imagePannel" hidden="{{codeImageHidden}}"> 
  <view class="code">
-    <image src="/pages/images/logo.png" mode="widthFix" />
+    <image src="/pages/images/signAlert.png" mode="widthFix" />
   </view>
 </view>
 <view class='score_sing' bindtap='getaddSing' >{{message}}</view>
@@ -22,5 +22,5 @@
 </view>
 <view class='score_box_list flexColumnH'>
   <view class='textW'>微信扫码兑换积分</view>
-  <view class='textM' ><image src='/pages/images/right.png' ></image></view>
+  <view class='textM' ><image src='/pages/images/pointGet.png' ></image></view>
 </view>

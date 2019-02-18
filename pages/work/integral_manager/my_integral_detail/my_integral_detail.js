@@ -8,7 +8,7 @@ Page({
    */
   data: {
   sellerId:null, //导购id
-  message:'签到',
+  message:'点击签到',
   sing: true,
   score:null,   //积分总数
   codeImageHidden: true,

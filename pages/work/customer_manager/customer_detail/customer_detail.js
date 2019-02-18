@@ -475,7 +475,7 @@ Page({
             var activityId = res.data.result[0].activity_id;
             var activityName = res.data.result[0].activityName;
             var activityCode = res.data.result[0].activityCode;
-            var skipUrl = skipUrls + '?activityId=' + activityId + '&customerId=' + thisPage.data.customer_Id + '&orderType=1' + '&editType=add' + '&pageFrom=activity&orderCode=' + thisPage.data._code + '&activityName=' + activityName + '&activityCode=' + activityCode;
+            var skipUrl = skipUrls + '?activityId=' + activityId + '&customerId=' + thisPage.data.customer_Id + '&orderType=1' + '&editType=add' + '&pageFrom=activity&orderCode=' + thisPage.data._code + '&activityName=' + activityName + '&activityCode=' + activityCode + '&customerName=' + thisPage.data.customerInfo.customerName + '&customerPhone=' + thisPage.data.customerInfo.customerPhone;
             app.skipUpTo(skipUrl, 1);
           }
         }

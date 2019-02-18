@@ -9,7 +9,7 @@
   <view class="{{activity_boxsss[activityType]}}" hidden='{{menuContentHiddenArr[indexs]}}'>
     <block wx:for="{{activityList}}" wx:for-item="item" wx:key="image">
       <view style='position:relative;'>
-        <view class='activit_list' data-activity_id="{{item.id}}" data-type='1' data-activityType='{{item.type}}' bindtap='skipUpTo'>
+        <view class='activit_list' data-item="{{item}}" data-type='1' data-activityType='{{item.type}}' bindtap='skipUpTo'>
           <block wx:if="{{isType == 1}}">
             <image src='{{item.blockurl}}' class='activity_img' mode='widthFix'></image>
           </block>

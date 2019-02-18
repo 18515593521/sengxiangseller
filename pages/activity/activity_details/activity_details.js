@@ -338,12 +338,12 @@ Page({
   onShareAppMessage: function (res) {
     var thisPage = this;
     return {
-      title: thisPage.data.shareName ? thisPage.data.shareName : thisPage.data.activityName,
-      path: '/pages/share/share?P1=G&P3=' + app.globalData.user_Info.user_id + '&appId=' + app.globalData.user_Info.app_id + '&activity_id=' + thisPage.data.activityId,
+      title: thisPage.data.activityDetailData.name,
+      path: '/pages/share/share?activity_id=' + thisPage.data.activityId,
+      imageUrl: thisPage.data.activityDetailData.imgurl,
       success: function (res) {
         app.addPageSharePoint(thisPage.data.activityDetailData.name);
         // 转发成功
-     
       },
       fail: function (res) {
 

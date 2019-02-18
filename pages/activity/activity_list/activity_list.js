@@ -122,12 +122,17 @@ Page({
   //点击页面跳转
   skipUpTo: function(e) {
     var skipUpContent = e.currentTarget.dataset;
-    var activity_id = skipUpContent.activity_id;
-    var skipType = skipUpContent.type; //类型
+    var activityInfo = skipUpContent.item;
     var activityType = skipUpContent.activitytype; //活动类型 1精彩活动  2图文活动
     var thisPage = this;
-
-    app.skipUpTo("/pages/activity/activity_head_show/activity_head_show?activityId=" + activity_id, 1);
+    var activityId=null;
+    if (thisPage.data.isType == 1){
+      activityId = activityInfo.id
+    } else if (thisPage.data.isType == 2){
+      activityId = activityInfo.activity_id
+    }
+    var url = "/pages/activity/activity_head_show/activity_head_show?activityId=" + activityId 
+      app.skipUpTo(url, 1);
   },
   //下拉拉加载
   onReachBottom: function() {

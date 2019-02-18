@@ -3,18 +3,18 @@
 <view class='activityBox flexColumnH'>
   <view class='activityName flexRow'>
      <view>活动名称:</view>
-     <view>{{ActivityOrderInfo.activityName}}</view>
+     <view>{{activityName}}</view>
   </view>
   <view class='activityCode flexRow'>
     <view>活动编号:</view>
-    <view>{{ActivityOrderInfo.activity_code?ActivityOrderInfo.activity_code:ActivityOrderInfo.activityCode}}</view>
+    <view>{{activityCode}}</view>
   </view>
 </view>  
 <!--客户信息-->
 <view class='infoList paddingBox flexColumnH addressBoxs'>
   <view class='infoItem flexRow botderBottom'>
-    <view class='item'>客户姓名:{{ActivityOrderInfo.customerName}}</view>
-    <view class='item'>联系电话:{{ActivityOrderInfo.customerPhone}}</view>
+    <view class='item'>客户姓名:{{customerName}}</view>
+    <view class='item'>联系电话:{{customerPhone}}</view>
   </view>
   <view class='flexRow'>
     <view class='flexColumnH addressInfo'>
@@ -22,12 +22,12 @@
          <view class='item flexRow'>
          <view class='flexWidth'></view>
             <view  class='receiveName' style='width:100rpx'>收件人:</view>
-            <input type='text' class='receiveNames' disabled='{{editType=="look"}}' maxlength='8'  placeholder-style='color:#333;font-size:26rpx' value='{{_name}}' data-name='_name' bindinput='editNmae'></input>
+            <input type='text' class='receiveNames'  maxlength='8' placeholder='请输入'  value='{{_name}}' data-name='_name' bindinput='editNmae'></input>
          </view>
           <view class='item flexRow'>
             <view class='flexWidth'></view>
             <view  class='receivephone'  style='width:120rpx'>联系电话:</view>
-            <input type='text'  class='receivephones'  disabled='{{editType=="look"}}' maxlength='11' placeholder-style='color:#333;font-size:26rpx'  value='{{_phone}}'  data-name='_phone' bindinput='editNmae'></input>
+            <input type='text'  class='receivephones'   maxlength='11' placeholder='请输入'  value='{{_phone}}'  data-name='_phone' bindinput='editNmae'></input>
           </view>
       </view>
       <view class='address flexRow'>
@@ -40,12 +40,12 @@
         <view style='width:120rpx'  class='receivephone' >收货地址:</view>
         <input type='text'    class='receivephones' style='width:520rpx' placeholder-style='color:#333;font-size:26rpx'  value='{{_address}}'  data-name='_address' bindinput='editNmae'></input>
       </view>
-      <view class='flexRow editBox'  hidden='{{editType=="look"}}'>
+      <!-- <view class='flexRow editBox'  hidden='{{editType=="look"}}'>
         <view class='flexWidth' style='height:60rpx'></view>
         <image src='/pages/images/work/customer_info/edit.png' class='editImg'></image>
         <view class='selectAdress' bindtap='skinToOther' 
        data-url='/pages/work/customer_manager/make_order/select_address/select_address?customer_id=' data-type='1'>选择现有收获地址</view>
-      </view>
+      </view> -->
     </view>
   </view>
 </view>
@@ -62,10 +62,9 @@
       <view class='productList flexRow'>
           <image src='/pages/images/add.png' class='addImg' bindtap='addProduct' wx:if='{{index<1}}'></image>
             <image src='/pages/images/subtract.png' class='addImg'  data-index='{{index}}' bindtap='subtractProduct' wx:if='{{index>0}}'></image>
-          <input type='text' bindinput='eidtPriceNum' maxlength='10' data-type='price' class='price' ></input><!--价格-->
-          <input type='number' bindinput='eidtPriceNum' maxlength='10' data-type='price' class='price' ></input><!--价格-->
-          <input type='number'  data-index='{{index}}'  value='{{item.num}}'   maxlength='10' data-type='num' class='num' ></input>
-          <input type='number'  data-index='{{index}}'  value='{{item.num}}'   maxlength='10' data-type='num' class='num' ></input>
+          <input type='text' value='{{item.productModel}}' bindinput='eidtPriceNum' data-index='{{index}}'  data-type='productModel' class='price' ></input><!--价格-->
+          <input type='number' value='{{item.price}}'  bindinput='eidtPriceNum' data-index='{{index}}' maxlength='10' data-type='price' class='price' ></input><!--价格-->
+          <input type='number' value='{{item.num}}' bindinput='eidtPriceNum' data-index='{{index}}' maxlength='10' data-type='num' class='price' ></input><!--价格-->
           <view class='product_title'>{{item.totalPrice}}</view>
       </view>      
     </block>
@@ -76,12 +75,12 @@
   <view class='ruleItem flexRow paddingBox'>
     <view class='flexRow ruleItemBox' style='width:50%'>
         <view style='width:130rpx'>预付定金:</view>
-        <input type='number' class='orderPrice'  hidden='{{editType=="look"||!isCanedit2}}' value='{{prepayPrice}}' bindinput='prepayValue' ></input>
+        <input type='number' class='orderPrice'   value='{{prepayPrice}}' bindinput='prepayValue' ></input>
          <view class='orderPrice'  wx:if="{{editType=='look'||!isCanedit2}}">{{prepayPrice?prepayPrice:''}}</view>
     </view>
     <view class='flexRow ruleItemBox' style='width:50%'>
         <view style='width:180rpx' >本次实收金额:</view>
-        <input type='number' class='orderPrice' hidden='{{editType=="look"||!isCanedit2}}' bindinput='realityTotal' value='{{realityPeice}}'></input>
+        <input type='number' class='orderPrice' bindinput='realityTotal' value='{{realityPeice}}'></input>
         <view class='orderPrice'  wx:if="{{editType=='look'||!isCanedit2}}">{{realityPeice}}</view>
     </view>    
   </view>
@@ -94,11 +93,11 @@
               <view>{{paymentMoney[index]}}</view>
           </picker>
         </view>
-        <view  class='paymentWaya'  style='width:200rpx;position:relative' wx:if="{{editType=='look'||!isCanedit2}}" >{{paymentMoney[index]}}</view>
+        <view  class='paymentWaya'  style='width:200rpx;position:relative' >{{paymentMoney[index]}}</view>
         <image src='/pages/images/pulldown.png' class='pullImg' ></image>
     </view>
   </view>
-  <view  hidden='{{showHideActivity2}}' class='flexColumnH'>
+  <view hidden='true'  class='flexColumnH'>
     <view class='raffleTime ruleItem flexRow ruleItems' hidden='{{lottery}}'>
       <view class='payentWays' style='width:150rpx'>可抽奖次数:</view>
       <view class='raffleNum'>{{lotteryNum}}次</view>
@@ -136,13 +135,13 @@
       <image src='/pages/images/gantanhao.png' class='wenhao'></image>
       <view >说明</view>
   </view>
-  <textarea class='remarkText paddingBox'  value='{{explain}}' maxlength='-1' placeholder='请输入内容'  bindinput='writeText'  ></textarea>
+  <textarea class='remarkText paddingBox'  value='{{explain}}' maxlength='-1' placeholder='请输入内容'  bindinput='writeExplain'  ></textarea>
 </view>
 <!--专属店员-->
   <view class='flexColumnH belongTo paddingBox'>
     <view class='flexRow'>
-      <view class='item'>专属店员姓名:{{typistName}}</view>
-      <view class='item'>专属店员电话:{{typistPhone}}</view>
+      <view class='item'>专属店员姓名:{{sellerName}}</view>
+      <view class='item'>专属店员电话:{{sellerPhone}}</view>
     </view>
     <!-- <view  class='flexRow'>
        <view  class='item'>打单员:{{typistName}}</view>

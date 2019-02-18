@@ -17,6 +17,7 @@
     "pages/myself/aboutUs/aboutUs",
     "pages/myself/aboutUsDetail/aboutUsDetail",
     "pages/myself/phone/phone",
+    "pages/share/share",
     "pages/myself/complete_phone/complete_phone",
     "pages/activity/activity_head_show/activity_head_show",
     "pages/activity/activity_head_shows/activity_head_shows",
@@ -36,7 +37,7 @@
   },
     "tabBar": {
       "color": "#fff",
-      "selectedColor": "#4bbec3",
+      "selectedColor": "#0074c1",
       "backgroundColor": "#333",
       "borderStyle": "white",
       "position": "bottom",
@@ -60,5 +61,8 @@
           "text": "我的"
         }
       ]
-    }
+    },
+    "navigateToMiniProgramAppIdList": [
+      "wx563e863bfd512553"
+    ]
 }

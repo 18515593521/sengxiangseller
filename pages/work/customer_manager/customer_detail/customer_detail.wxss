@@ -622,13 +622,21 @@
 }
 .communicationTime{
   width: 300rpx;
+  padding-left: 20rpx;
   margin: 0 auto;
+  text-align: center;
 }
 .communicationContent{
   width: 250rpx;
+  word-wrap: break-word; 
+  word-break: normal;
+  padding-right: 20rpx;
+  text-align: center; 
 }
 .communicationStatus{
   width: 200rpx;
+  text-align: center;
+  color: #0074c1;
 }
 
 .report_user{

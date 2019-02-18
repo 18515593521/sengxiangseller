@@ -9,6 +9,10 @@
   justify-content : space-around;
   margin-top: 30rpx;
   height: 80rpx;
+  line-height: 80rpx;
+  letter-spacing: 15rpx;
+  color: white;
+  background-color: #0074c1;
 }
 .activityBa1{
   justify-content : space-around;

@@ -203,7 +203,11 @@ Page({
     console.log('所有的产品数据！！！！' + JSON.stringify(totalPriceInfo));
     this.setData({
       activityId: options.activityId,
+      activityName: options.activityName,
+      activityCode: options.activityCode,
       customerId: options.customerId,
+      customerName: options.customerName,
+      customerPhone: options.customerPhone,
       orderCode: options.orderCode,
       showHideActivity: values, 
       orderType: orderType,  //订单的类型（销售订单、活动订单）
@@ -217,7 +221,6 @@ Page({
       prepayPrice: prepayPrice?prepayPrice:'', //预付定金
       payWay: payWay ? payWay:'银行卡', //付款方式
       index: indexPay ? indexPay:0,  //第几个付款方式
-      remarkText: remarkText ? remarkText:'暂无', //备注
       orderId: options.orderId ? options.orderId:'',  //订单id
       editType: options.editType,  // 订单的类型（编辑edit、新增add、查看look）
       region_codeTrue: region_codeTrue,
@@ -281,19 +284,20 @@ getActivityOrderInfo:function(){
           _address = thisPage.data._address;
         }
 
-        if (thisPage.data.region_codeTrue && resDataObj.provinceCode){
-          var province = { 'code': resDataObj.provinceCode, 'name': resDataObj.province };
-          thisPage.data.province = province;
-          thisPage.getCityData(resDataObj.provinceCode, resDataObj.cityCode, resDataObj.districtCode);  //省市区
-        }
+        // if (thisPage.data.region_codeTrue && resDataObj.provinceCode){
+        //   var province = { 'code': resDataObj.provinceCode, 'name': resDataObj.province };
+        //   thisPage.data.province = province;
+        //   thisPage.getCityData(resDataObj.provinceCode, resDataObj.cityCode, resDataObj.districtCode);  //省市区
+        // }
 
        
         thisPage.setData({
           ActivityOrderInfo: resDataObj,
-          typistName: app.globalData.userInfo.name,  //打单员名字
           typistPhone: app.globalData.userInfo.phone,  //打单员电话
+          sellerName: app.globalData.userInfo.name,  //打单员名字
+          sellerPhone: app.globalData.userInfo.phone,  //打单员电话
           typistId: app.globalData.userInfo.id,
-          sellerId: resDataObj.sellerId,  //销售id
+          sellerId: app.globalData.userInfo.id,  //销售id
           shopId: resDataObj.shopId ? resDataObj.shopId : app.globalData.userInfo.shop_id,   //店铺id
           _name: _name ? _name:'' ,   //收件人姓名
           _phone: _phone ? _phone:'' ,  //收件人电电话
@@ -385,16 +389,23 @@ getPageData:function(e){
         // //省市区
         // var location = resDataObj.province + '-' + resDataObj.city + '-' + resDataObj.district;
         // var region_code = provinceCode + ',' + cityCode + ',' + districtCode;
-        if (thisPage.data.region_codeTrue && resDataObj.provinceCode) {
-          var province = { 'code': resDataObj.provinceCode, 'name': resDataObj.province };
-          thisPage.data.province = province;
-          thisPage.getCityData(resDataObj.provinceCode, resDataObj.cityCode, resDataObj.districtCode);  //省市区
+        // if (thisPage.data.region_codeTrue && resDataObj.provinceCode) {
+        //   var province = { 'code': resDataObj.provinceCode, 'name': resDataObj.province };
+        //   thisPage.data.province = province;
+        //   thisPage.getCityData(resDataObj.provinceCode, resDataObj.cityCode, resDataObj.districtCode);  //省市区
+        // }
+        var showPrice = 0;
+        for (var m = 0; m < resDataObj.productInfoList.length;m++){
+          if (resDataObj.productInfoList[m]){
+            showPrice += parseFloat(resDataObj.productInfoList[m].totalPrice)
+          }
         }
-
 
         thisPage.setData({
           ActivityOrderInfo: resDataObj,
           sellerId: resDataObj.sellerId,  //销售id
+          sellerName:app.globalData.userInfo.name,
+          sellerPhone: app.globalData.userInfo.phone,
           shopId: resDataObj.shopId,   //店铺id
           _name: _name,   //收件人姓名
           _phone: _phone,  //收件人电电话
@@ -405,10 +416,14 @@ getPageData:function(e){
           index: payCode,  //付款方式
           realityPeice: resDataObj.realPayPrice,  //实际付款
           totalPrice: resDataObj.orderPrice,   //订单价格
-          showPrice:resDataObj.orderPrice,  //订单价格(展示)
+          showPrice: showPrice,  //订单价格(展示)
+          customerName: resDataObj.customerName,
+          customerPhone: resDataObj.customerPhone,
           totalPriceInfo: resDataObj.productInfoList,  //产品列表
           isCanedit:isCanedit,  //是否可编辑
           isCanedit2: isCanedit2,//是否可编辑
+          activityName: resDataObj.activityName,
+          activityCode: resDataObj.activityCode,
           selectToData:{
             1: { denomination: hbUse},
             2: { denomination: yhqUse },
@@ -466,14 +481,6 @@ getPageData:function(e){
   //编辑价格、数量、产品总额
   eidtPriceNum:function(e){
     var thisPage = this;
-    if (thisPage.data.editType !== 'look' && thisPage.data.isCanedit2){
-      thisPage.setData({
-        selectToData: {
-          1: null,
-          2: null,
-          3: null
-        }
-      });
       var current = e.currentTarget;
       var types = current.dataset.type;    //类型
       var index = current.dataset.index;  //当前第几个
@@ -492,8 +499,8 @@ getPageData:function(e){
         totalPrice: totalPrice.toString(),
         showPrice: totalPrice.toString()
       })
-      thisPage.selectToValue2('', 0, 1);   //对应的红包优惠券的改变
-    }
+
+    
 
   },
   //新增
@@ -835,6 +842,14 @@ selectToValue: function (e) {
     })
     wx.setStorageSync('remarkText', value); 
   },
+  //写备注
+  writeExplain: function (e) {
+    var value = e.detail.value;
+    this.setData({
+      explain: value
+    })
+    wx.setStorageSync('remarkText', value);
+  },
   //选择地区
   chooseAddress: function (e) {
     this.setData({
@@ -1099,39 +1114,35 @@ submitData:function(e){
     }
     var urls= "";
     var dataList = { 
-      shopId: thisPage.data.shopId,  //店铺id
-      sellerId: thisPage.data.sellerId,  //销售id
-      orderType: thisPage.data.orderType,  //活动类型   （1、活动订单、2 是销售订单）
+      shopId: app.globalData.userInfo.shop_id,  //店铺id
+      sellerId: app.globalData.userInfo.id,  //销售id
+      orderType: 1,  
+      orderCode: thisPage.data.orderCode,
       customerId: thisPage.data.customerId, //客户id
       consignee: thisPage.data._name,  //收件人
       consigneePhone: thisPage.data._phone,  //收件人电话
       consigneeAddress: thisPage.data._address,//收件人详细地址
-      ids: productIds, //红包、优惠券的组合
       realPayPrice: thisPage.data.realityPeice,//实收金额
       thisTimePrice: thisPage.data.realityPeice,
       remarks: thisPage.data.remarkText,  //备注
+      explain: thisPage.data.explain, 
       depositPrice: thisPage.data.prepayPrice,//定金
       payStatus: thisPage.data.payWay,  //支付方式
-      provinceCode: thisPage.data.province.code, //省编码
-      cityCode: thisPage.data.city.code,  //市编码
-      districtCode: thisPage.data.area.code, //区编码
+      province: thisPage.data.province.code, //省编码
+      city: thisPage.data.city.code,  //市编码
+      district: thisPage.data.area.code, //区编码
       activityId: thisPage.data.activityId, //活动id
-      typistName: thisPage.data.typistName,  //打单员名字
-      typistPhone: thisPage.data.typistPhone,  //打单员电话
-      typistId: thisPage.data.typistId,
+      typistName: thisPage.data.sellerName,  //打单员名字
+      typistPhone: thisPage.data.sellerPhone,  //打单员电话
+      typistId: app.globalData.userInfo.id,
       orderGiving: thisPage.data.gifNumsData, //订单礼品数组
       num: thisPage.data.lotteryNumData,//抽奖次数
       orderPrice: thisPage.data.showPrice, //订单金额
       productInfoList: totalPriceInfo, //产品数组
-      commissionStatus: app.globalData.is_horizontal_alliances ? 1 : 2,
-      node3: app.globalData.user_Info.factoryId
     };
-    if (thisPage.data.editType == 'add') {
-      urls = '/app/addOrder';
-    } else {
-      urls = '/app/updateOrder';
-      dataList.orderId = thisPage.data.orderId;  //订单id 
-    }
+   
+  urls = '/app/addOrder';
+   
   wx.request({
     url: urlPage + urls ,
     data: dataList,         //请求参数,
@@ -1201,5 +1212,33 @@ saveAddress:function(e){
     }
   })
 
-}
+},
+  //活动内容详情
+  activityDeatils: function () {
+    var thisPage = this;
+    wx.request({
+      url: app.globalData.domainName + 'app/selectHelperActivityAll', //
+      data: {           //请求参数      
+        id: thisPage.data.activityId
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      method: 'POST',
+      success: function (res) {
+        var resData = res.data;
+        //  console.log(res +"活动内容详情");
+        if (resData.code == 0) {
+          thisPage.setData({
+            activityDetailData: resData.result
+          })
+        } else if (resData.code == 1) {
+          console.log("请求活动详情失败！");
+        }
+      },
+      fail: function (res) {
+        console.log(res + '失败！');
+      }
+    })
+  },
 })

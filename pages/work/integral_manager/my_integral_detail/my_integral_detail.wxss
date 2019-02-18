@@ -59,20 +59,20 @@
 /*二维码*/
 .imagePannel{
   position:fixed;
-  width: 250rpx;
-  height: 250rpx;
+  width: 450rpx;
+  height: 450rpx;
   top: 50vh;
   bottom: 0;
   left: 50vw;
   right: 0;
   z-index: 210;
-  margin-top: -125rpx;
-  margin-left: -125rpx;
+  margin-top: -225rpx;
+  margin-left: -225rpx;
 }
 
 .imagePannel .code image{
-  width: 200rpx;
-  height: 200rpx;
+  width: 400rpx;
+  height: 400rpx;
   display: block;
 }
 .textW{

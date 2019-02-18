@@ -74,9 +74,9 @@ Page({
   getActivityData: function (activityId) {
     var thisPage = this;
     wx.request({
-      url: app.globalData.domainName + 'app/selectHelperActivityDetails',
+      url: app.globalData.domainName + 'app/selectActivityInfo',
       data: {           //请求参数      
-        id: thisPage.data.activityId,
+        activity_id: activityId,
       },
       header: {
         'content-type': 'application/json' // 默认值
@@ -85,14 +85,8 @@ Page({
       success: function (res) {
         var resData = res.data;
         if (resData.code == 0) {
-          if (resData.result.item.length > 290) {
-            var items = resData.result.item;
-            resData.result.item = items.slice(0, 290);
-            console.log(resData.result.item);
-          }
           thisPage.setData({
-            activityData: resData.result,
-            orderData: resData.result.order
+            activityData: resData.result
           })
         } else {
           console.log('活动详情接口请求失败！');
