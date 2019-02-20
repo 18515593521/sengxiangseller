@@ -41,20 +41,20 @@ Page({
       type: type,
       value: value
     })
-    thisPage.goTo(options);
+    
   },
 
 
   //跳转
-  goTo: function (options) {
+  goTo: function () {
     var thisPage = this;
     var skinpUrl = null;
-
+    var options = thisPage.data.options;
 
     skinpUrl = '/pages/activity/activity_details/activity_details?activityId=' + options.activity_id;
     
     wx.navigateToMiniProgram({
-      appId: 'wx563e863bfd512553',
+      appId: 'wx6fee74be826bb6fc',
       path: skinpUrl ,
       envVersion: 'trial',//trial体验  release 正式
       success(res) {

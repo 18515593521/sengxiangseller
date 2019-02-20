@@ -13,7 +13,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.5.0",
-	"appid": "wx5a971c67166aa88b",
+	"appid": "wx484cb2bb14a2db98",
 	"projectname": "sengxiang",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -37,13 +37,25 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 2,
 			"list": [
 				{
 					"id": 0,
 					"name": "活动管理",
 					"pathName": "pages/activity/activity_head_show/activity_head_show",
 					"query": "activityId=141"
+				},
+				{
+					"id": -1,
+					"name": "fenxiang",
+					"pathName": "pages/share/share",
+					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "活动详情",
+					"pathName": "pages/activity/activity_head_show/activity_head_show",
+					"query": "activityId=7"
 				}
 			]
 		}

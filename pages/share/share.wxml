@@ -3,8 +3,4 @@
   <image src='/pages/images/look.jpg' class='images' mode='widthFix'></image>
 </view>
 <view class='goTo' bindtap='goTo'></view>
-<!--动态框-->
-<import src="../template/template.wxml"/>
-<view hidden='{{gifts}}' class='waitsImage'>
-  <template is='waitImg'/>
-</view>
+

@@ -62,7 +62,7 @@ input{
   margin-right:10rpx;
 }
 .selectAdress{
-  color:#44c0c1;
+  color:#0074c1;
   font-size:24rpx;
 }
 .receiveName,.receivephone{

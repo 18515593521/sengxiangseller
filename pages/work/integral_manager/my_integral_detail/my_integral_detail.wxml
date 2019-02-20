@@ -1,7 +1,8 @@
 
 <view class="imagePannel" hidden="{{codeImageHidden}}"> 
  <view class="code">
-    <image src="/pages/images/signAlert.png" mode="widthFix" />
+    <image src="https://www.kaolaj.com/file/upload/icon/signAlert.png" mode="widthFix" />
+    <view class='signText'>已签到,签到积分+1</view>
   </view>
 </view>
 <view class='score_sing' bindtap='getaddSing' >{{message}}</view>
