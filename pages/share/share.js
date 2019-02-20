@@ -56,7 +56,7 @@ Page({
     wx.navigateToMiniProgram({
       appId: 'wx6fee74be826bb6fc',
       path: skinpUrl ,
-      envVersion: 'trial',//trial体验  release 正式
+      envVersion: 'release',//trial体验  release 正式
       success(res) {
         thisPage.setData({
           clickNum:1  

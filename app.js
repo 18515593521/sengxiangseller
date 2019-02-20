@@ -2,8 +2,8 @@
 App({
   globalData: {
     userInfo: null,
-    domainName: 'http://192.168.101.227:8080/dekor/',
-    //domainName: 'http://39.107.152.217:8095/dekor_test/',
+    //domainName: 'http://192.168.101.227:8080/dekor/',
+    domainName: 'http://39.107.152.217:8095/dekor_test/',
   },
   //显示成功信息
   showSuccessMessage: function (message) {
