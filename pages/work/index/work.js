@@ -183,4 +183,9 @@ Page({
     app.skipUpTo(skipUrl, skipType);
   
   },
+  //扫码
+  scanCode: function (e) {
+
+    app.scanCode('work');
+  },
 })

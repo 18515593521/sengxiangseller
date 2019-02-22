@@ -82,4 +82,21 @@
 </view>
 
 <!--生成订单-->
-<view class='makeOrder' bindtap='makeOrder'>生成订单</view>
+<view class='makeOrder' bindtap='user_phone_pop'>生成订单</view>
+
+ <!--报备客户的弹框-->
+  <view class='report_user' hidden='{{_popUp}}'>
+    <view class='report_box'>
+      <view style='height:200rpx;'>
+        <view class='user_info_box' style='margin-top:20rpx;'>
+            <view class='user_info_name'>订单编号</view>
+            <input type='text' value='{{_}}'  placeholder-style="color:#999;margin-left:20rpx;" data-param= '_code'  bindinput="user_infos"  placeholder="请输入订单编号" class='user_name'></input>
+        </view>
+      </view>
+      <view class='operation_box'>
+        <view class='cancel' style='color:#666' bindtap='cancel_operation'>取消</view>
+        <view class='sure' style='background:#0074c1;color:#fff;' bindtap='sure_operation'>确定</view>
+      </view>
+    </view>
+  </view>
+

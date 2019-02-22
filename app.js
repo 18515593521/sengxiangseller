@@ -52,4 +52,32 @@ App({
       })
     }
   },
+  //扫码
+  scanCode: function (detail) {
+    var thisPage = this;
+    wx.scanCode({
+      onlyFromCamera: true,
+      success: (res) => {
+        console.log(res.result);
+        var result = JSON.parse(res.result);
+
+        var activityId = result.activityId;
+        var customerId = result.customerId;
+        console.log(activityId, customerId);
+          if (activityId  && customerId) {
+            var skinUp = "/pages/activity_process/activity_process?activityId=" + activityId + "&customerId=" + customerId + "&detail=" + detail;
+            thisPage.skipUpTo(skinUp, 1);
+          } else if (result.P1) {
+            if (result.P1 == 'M') {
+              var skinUp = "/pages/member/member?customerId=" + result.P2;
+              thisPage.skipUpTo(skinUp, 1);
+            }
+          }
+
+       
+
+
+      }
+    })
+  },
 })

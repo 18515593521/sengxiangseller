@@ -1,6 +1,5 @@
 // pages/activity_process/activity_process.js
 const app = getApp()
-var urls = app.globalData.domainName;        //请求域名
 Page({
 
   /**
@@ -11,6 +10,7 @@ Page({
     logoImage:null,  //头像
     node3:null,  //厂家id
     customer_id: null, //客户 id
+    _popUp: true,
     activity_id: null, //活动id
     sellerId: null,//登录用户的 userId
     shop_id:null, // 店铺id
@@ -39,10 +39,11 @@ Page({
     thisPage.setData({
       customer_id: options.customerId,
       activity_id:options.activityId,
-      sellerId:app.globalData.user_Info.user_id,
-      shop_id:app.globalData.user_Info.shop_id,
-      node3:app.globalData.user_Info.factoryId,  // options.node3
-      logoImage: app.globalData.logoImage
+      // customer_id: "10828",
+      // activity_id: 1224,
+      sellerId:app.globalData.userInfo.id,
+      shop_id:app.globalData.userInfo.shop_id,
+      //logoImage: app.globalData.logoImage
     })
 
     thisPage.getActivityInfo();
@@ -58,7 +59,7 @@ Page({
   getActivityInfo:function(e){
     var thisPage = this;
     wx.request({
-      url: urls + '/app/selectHelperActivityUser',
+      url: app.globalData.domainName + 'app/selectHelperActivityUser',
       data: {           //请求参数      
         customer_id: thisPage.data.customer_id,
         activity_id: thisPage.data.activity_id,
@@ -116,7 +117,7 @@ Page({
     var thisPage = this;
     var name = e.currentTarget.dataset.name;
     wx.request({
-      url: urls + '/app/uptdateSign',
+      url: app.globalData.domainName + 'app/uptdateSign',
       data:{
         sign_state:'1',
         sign_gift: name,
@@ -160,7 +161,7 @@ Page({
 sureBuy:function(e){
   var thisPage = this;
   wx.request({
-    url: urls + '/app/uptdateCard',
+    url: app.globalData.domainName + 'app/uptdateCard',
     data:{
       card:'1',
       customer_id: thisPage.data.customer_id,
@@ -213,7 +214,7 @@ sureBuy:function(e){
           if (res.confirm) {
 
             wx.request({
-              url: urls + '/app/ uptdateHelperActivityOrder',
+              url: app.globalData.domainName + 'app/ uptdateHelperActivityOrder',
               data: {
                 status: thisPage.data.currentstatus,
                 id: thisPage.data.currentId,
@@ -296,5 +297,72 @@ sureBuy:function(e){
     var skipUrls = '/pages/work/customer_manager/make_order/make_order/make_order';  //跳转的地址
     var skipUrl = skipUrls + '?activityId=' + thisPage.data.activity_id + '&customerId=' + thisPage.data.customer_id + '&orderType=1' + '&editType=add' + '&pageFrom=scanCode';
     app.skipUpTo(skipUrl, 2);
-  }
+  },
+  //弹框
+  user_phone_pop: function () {
+    var thisPage = this;
+    thisPage.setData({
+      _popUp: false   //数据
+    })
+  },
+  //取消
+  cancel_operation: function () {
+    var thisPage = this;
+    thisPage.setData({
+      _popUp: true,  //数据
+      _name: null,
+      _phone: null
+    })
+  },
+  sure_operation: function () {
+    var thisPage = this;
+    if (!thisPage.data._code) {
+      app.showWarnMessage("请输入订单编号！");  //失败
+      return;
+    }
+    thisPage.getActivity();
+  },
+  //获取当前用户是否有参加活动
+  getActivity: function () {
+    var thisPage = this;
+    var skipUrls = '/pages/work/customer_manager/make_order/make_order/make_order'; //跳转的地址
+
+    wx.request({
+      url: app.globalData.domainName + 'app/selectCustomerActivity',
+      data: { //请求参数      
+        customerId: thisPage.data.customer_id, //用户id
+        shopId: app.globalData.userInfo.shop_id
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      method: 'POST',
+      success: function (res) {
+        var resData = res.data;
+        //code : 2 , 未参加活动
+        if (resData.code == 2) {
+          app.showWarnMessage(resData.message); //失败
+        } else {
+          if (res.data.result.length == 1) { //一个自动取第一个（目前） 多个的话用户自己选择（后期）
+            var activityId = res.data.result[0].activity_id;
+            var activityName = res.data.result[0].activityName;
+            var activityCode = res.data.result[0].activityCode;
+            var skipUrl = skipUrls + '?activityId=' + activityId + '&customerId=' + thisPage.data.customer_Id + '&orderType=1' + '&editType=add' + '&pageFrom=activity&orderCode=' + thisPage.data._code + '&activityName=' + activityName + '&activityCode=' + activityCode + '&customerName=' + thisPage.data.activityData.customer_name + '&customerPhone=' + thisPage.data.activityData.phone;
+            app.skipUpTo(skipUrl, 1);
+          }
+        }
+      },
+      fail: function (res) {
+        console.log(res + '失败！');
+      }
+    })
+  },
+  user_infos: function (e) {
+    var current = e.currentTarget;
+    var key = current.dataset.param;
+    var value = e.detail.value;
+    var obj = {};
+    obj[key] = value;
+    this.setData(obj);
+  },
 })

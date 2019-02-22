@@ -9,7 +9,7 @@
   </view>
   <view class="login_Acess">
     <image src='../images/bianhao.png' class='access'></image>
-    <input type='text' placeholder="请输入部门编号" password='true' data-param='_bmh' bindinput="accent_input" placeholder-style='font-size:16px' class='pass_text'></input>
+    <input type='text' placeholder="请输入部门编号"  data-param='_bmh' bindinput="accent_input" placeholder-style='font-size:16px' class='pass_text'></input>
   </view>
   <view class="login_Acess">
     <image src='../images/login_icon/access.png' class='access'></image>

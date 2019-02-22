@@ -17,6 +17,7 @@
     "pages/myself/aboutUs/aboutUs",
     "pages/myself/aboutUsDetail/aboutUsDetail",
     "pages/myself/phone/phone",
+    "pages/activity_process/activity_process",
     "pages/share/share",
     "pages/myself/complete_phone/complete_phone",
     "pages/activity/activity_head_show/activity_head_show",
