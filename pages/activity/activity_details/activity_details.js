@@ -337,12 +337,13 @@ Page({
   //转发
   onShareAppMessage: function (res) {
     var thisPage = this;
+
     return {
       title: thisPage.data.activityDetailData.name,
       path: '/pages/share/share?activity_id=' + thisPage.data.activityId,
       imageUrl: thisPage.data.activityDetailData.imgurl,
       success: function (res) {
-        app.addPageSharePoint(thisPage.data.activityDetailData.name);
+        thisPage.addIntegral();
         // 转发成功
       },
       fail: function (res) {
@@ -351,5 +352,35 @@ Page({
       }
     }
   },
+  //添加导购积分
+  addIntegral: function () {
+    var thisPage = this;
+    wx.request({
+      url: app.globalData.domainName + 'app/addIntegral',
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      method: 'POST',
+      data:{
+        seller_id:app.globalData.userInfo.id,
+        type_index:1,
+        type_name:'分享',
+        point:1,
+        title: thisPage.data.activityDetailData.name,
+        activity_id: thisPage.data.activityId
+      },
+      success: function (res) {
+        var resData = res.data;
+        if (resData.code == 0) {
+          app.showSuccessMessage('分享成功！');
+        } else {
+          app.showWarnMessage('分享失败！');
+        }
 
+      },
+      fail: function (res) {
+        console.log(res + '失败！');
+      }
+    })
+  },
 })
