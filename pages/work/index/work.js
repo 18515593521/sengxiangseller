@@ -59,9 +59,10 @@ Page({
    */
   onLoad: function (options) {
     var thisPage = this;
-    
+  },
+  onShow:function(){
+    var thisPage = this;
     thisPage.getTodayData(); //获取今日数据
-
   },
   /* 页面相关事件处理函数--监听用户下拉动作 */
   onPullDownRefresh: function () {

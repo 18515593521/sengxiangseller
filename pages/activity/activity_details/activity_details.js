@@ -233,7 +233,9 @@ Page({
     
     thisPage.activityDeatils(); //活动内容详情
  
-
+    // setTimeout(function(){
+    //   thisPage.addIntegral();
+    // },2000)
 
     //thisPage.getErWeiMa();   //请求二维码
 
@@ -337,18 +339,18 @@ Page({
   //转发
   onShareAppMessage: function (res) {
     var thisPage = this;
-
+    thisPage.addIntegral();
     return {
       title: thisPage.data.activityDetailData.name,
       path: '/pages/share/share?activity_id=' + thisPage.data.activityId,
-      imageUrl: thisPage.data.activityDetailData.imgurl,
+      imageUrl: thisPage.data.activityDetailData.imgurl ? thisPage.data.activityDetailData.imgurl:"",
       success: function (res) {
-        thisPage.addIntegral();
-        // 转发成功
+
+        console.log("转发成功", res);
       },
       fail: function (res) {
 
-        // 转发失败
+        console.log("转发失败", res);
       }
     }
   },
