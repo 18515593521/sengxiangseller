@@ -331,3 +331,8 @@ line-height:60rpx;
   text-align: center;
   font-size: 28rpx;
 }
+.raffleNumIn{
+  height: 80rpx;
+  line-height: 80rpx;
+}
+

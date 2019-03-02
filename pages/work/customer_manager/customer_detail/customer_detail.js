@@ -471,12 +471,22 @@ Page({
         if (resData.code == 2) {
           app.showWarnMessage(resData.message); //失败
         } else {
-          if (res.data.result.length == 1) { //一个自动取第一个（目前） 多个的话用户自己选择（后期）
+          if (res.data.result.length > 0 ) { //一个自动取第一个（目前） 多个的话用户自己选择（后期）
             var activityId = res.data.result[0].activity_id;
             var activityName = res.data.result[0].activityName;
             var activityCode = res.data.result[0].activityCode;
-            var skipUrl = skipUrls + '?activityId=' + activityId + '&customerId=' + thisPage.data.customer_Id + '&orderType=1' + '&editType=add' + '&pageFrom=activity&orderCode=' + thisPage.data._code + '&activityName=' + activityName + '&activityCode=' + activityCode + '&customerName=' + thisPage.data.customerInfo.customerName + '&customerPhone=' + thisPage.data.customerInfo.customerPhone;
-            app.skipUpTo(skipUrl, 1);
+            
+            var skipUrl = skipUrls + '?activityId=' + activityId + '&customerId=' + thisPage.data.customer_Id + '&orderType=1' + '&editType=add' + '&pageFrom=activity&activityName=' + activityName + '&activityCode=' + activityCode + '&customerName=' + thisPage.data.customerInfo.customerName + '&customerPhone=' + thisPage.data.customerInfo.customerPhone;
+
+            thisPage.setData({
+              skipUrlOrder: skipUrl,
+              skipActivityId: activityId
+            })
+
+            thisPage.user_phone_pop();
+
+          }else{
+            app.showWarnMessage("该客户暂未参加活动"); //失败
           }
         }
       },
@@ -632,7 +642,10 @@ Page({
       app.showWarnMessage("请输入订单编号！");  //失败
       return;
     }
-    thisPage.getActivity();
+
+    thisPage.getActivityOrderInfo();
+   
+
   },
   user_infos: function (e) {
     var current = e.currentTarget;
@@ -641,5 +654,38 @@ Page({
     var obj = {};
     obj[key] = value;
     this.setData(obj);
+  },
+  //回显活动订单信息
+  getActivityOrderInfo: function () {
+    var thisPage = this;
+    wx.request({
+      url: app.globalData.domainName + 'app/createOrder',
+      data: {           //请求参数      
+        activityId: thisPage.data.skipActivityId,  //活动id
+        filialeId: app.globalData.userInfo.filialeId,  //分公司id app.globalData.user_Info.filialeId 
+        customerId: thisPage.data.customerId,  //客户di
+        orderCode: thisPage.data._code
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log('打单createOrder');
+        var resData = res.data;
+        if (resData.code == 0 && resData.result !=null) {
+         
+          var skipUrlOrder = thisPage.data.skipUrlOrder + "&orderCode=" + thisPage.data._code
+
+          app.skipUpTo(skipUrlOrder, 1); 
+        } else{
+          app.showWarnMessage("订单编号不存在请重新输入");
+        }
+
+      },
+      fail: function (res) {
+        console.log(res + '失败！');
+      }
+    })
   },
 })

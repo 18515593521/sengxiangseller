@@ -62,10 +62,10 @@ Page({
           objectData.zzh = thisPage.data._zzh;
           objectData.bmh = thisPage.data._bmh;
 
-          objectData.zzh ='028041';
-          objectData.bmh = 'SCDD01';
-          objectData.user_name = '13882011576';
-          objectData.user_pwd = '123456';
+          // objectData.zzh ='028041';
+          // objectData.bmh = 'SCDD01';
+          // objectData.user_name = '13882011576';
+          // objectData.user_pwd = '123456';
 
           if (objectData.user_name && objectData.user_pwd && objectData.zzh && objectData.bmh) {
             

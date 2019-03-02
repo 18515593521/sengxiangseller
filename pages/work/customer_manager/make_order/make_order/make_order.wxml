@@ -81,7 +81,7 @@
     <view class='flexRow ruleItemBox' style='width:50%'>
         <view style='width:180rpx' >本次实收金额:</view>
         <input type='number' class='orderPrice' bindinput='realityTotal' value='{{realityPeice}}'></input>
-        <view class='orderPrice'  wx:if="{{editType=='look'||!isCanedit2}}">{{realityPeice}}</view>
+        <view class='orderPrice'  wx:if="{{editType=='look'}}">{{realityPeice}}</view>
     </view>    
   </view>
   <view class='ruleItem flexRow ruleItems'>
@@ -93,11 +93,11 @@
               <view>{{paymentMoney[index]}}</view>
           </picker>
         </view>
-        <view  class='paymentWaya'  style='width:200rpx;position:relative' >{{paymentMoney[index]}}</view>
+        <!-- <view  class='paymentWaya'  style='width:200rpx;position:relative' >{{paymentMoney[index]}}</view> -->
         <image src='/pages/images/pulldown.png' class='pullImg' ></image>
     </view>
   </view>
-  <view hidden='true'  class='flexColumnH'>
+  <view hidden='{{lotteryNumData.length == 0}}'  class='flexColumnH'>
     <view class='raffleTime ruleItem flexRow ruleItems' hidden='{{lottery}}'>
       <view class='payentWays' style='width:150rpx'>可抽奖次数:</view>
       <view class='raffleNum'>{{lotteryNum}}次</view>
@@ -106,13 +106,14 @@
       <view class='payentWays' style='width:150rpx'>可砸蛋次数:</view>
       <view class='raffleNum'>{{eggNum}}次</view>
     </view>
-    <view class='raffleTime ruleItem flexRow ruleItems'  hidden='{{gift}}'>
+     <view class='raffleTime ruleItem flexRow ruleItems'>
+      <view class='payentWays' style='width:150rpx'>活动卡使用:</view>
+      <input type='text' class='raffleNum raffleNumIn' value='{{useType}}'  bindinput='eidtUseCard'  data-type='useType' placeholder='请输入使用卡' ></input><!--价格-->
+
+    </view>
+    <view class='raffleTime ruleItem flexRow ruleItems'  hidden='{{giftNumH}}'>
       <view class='payentWays' style='width:130rpx'>满增礼品:</view>
       <view class='raffleNum'>{{giftNum}}</view>
-    </view>
-    <view class='raffleTime ruleItem flexRow ruleItems'  hidden='{{gifts}}'>
-      <view class='payentWays' style='width:130rpx'>奖品内容:</view>
-      <view class='raffleNum'>2</view>
     </view>
   </view>
 </view>

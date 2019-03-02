@@ -32,7 +32,7 @@ Page({
     productPrice: null,  //产品价格
     productId: null, //产品id
     textareHidea:false,  //textarea 弹框的显示与隐藏
-
+    activityDetailData:{},
     index: 0,
     paymentMoney:['银行卡','微信','支付宝','现金'],  //付款方式
     payWay:'银行卡',   ///付款方式
@@ -53,6 +53,7 @@ Page({
     lotteryNum:null,  //可抽奖值
     lotteryNumData:[] ,  //抽奖的次数
     eggNum: null,   //可砸金蛋值
+    giftNumH:true,
     giftNum: null, //满赠礼物值
     gifNumsData:[], //满赠礼品的数值
     giftsNum: false,  //奖品内容（砸完金蛋以后显示）
@@ -240,6 +241,8 @@ Page({
         thisPage.realityTotal(realityPeice)
       },500)
     }
+
+    thisPage.activityDeatils();
   },
 
   /**
@@ -298,9 +301,11 @@ getActivityOrderInfo:function(){
           sellerPhone: app.globalData.userInfo.phone,  //打单员电话
           typistId: app.globalData.userInfo.id,
           sellerId: app.globalData.userInfo.id,  //销售id
-          shopId: resDataObj.shopId ? resDataObj.shopId : app.globalData.userInfo.shop_id,   //店铺id
-          _name: _name ? _name:'' ,   //收件人姓名
-          _phone: _phone ? _phone:'' ,  //收件人电电话
+          shopId:  app.globalData.userInfo.shop_id,   //店铺id
+          _name: resDataObj.custName  ,   //收件人姓名
+          _phone: resDataObj.custMob  ,  //收件人电电话
+          // customerName: resDataObj.custName,
+          // customerPhone: resDataObj.custMob,
           _address: _address ? _address:'',  //收货地址
         })
       
@@ -410,6 +415,9 @@ getPageData:function(e){
           _name: _name,   //收件人姓名
           _phone: _phone,  //收件人电电话
           _address: _address,  //收货地址
+          useType: resData.result.isUseActivityCard,
+          orderCode:resData.result.orderCode,
+          explain: resData.result.explain,
           remarkText: resData.result.remarks , //备注
           prepayPrice: resDataObj.depositPrice,  //预付定金
           payWay: resDataObj.payStatus,   //付款方式
@@ -602,59 +610,72 @@ getPageData:function(e){
     var lotteryNumData = [];  //可抽奖值
     var lotteryNum = null;  //可抽奖值
     var eggNum = null;   //可砸金蛋值
-    var giftNum = null ; //满赠礼物值
+    var giftNum = "" ; //满赠礼物值
     var gifNumsData = [] ; //满赠礼物的数值
-
+    var giftNumH = true;
     var giftData = [];  //礼物
-    var OrderInfo = thisPage.data.ActivityOrderInfo;
+    var OrderInfo = thisPage.data.activityDetailData;
+
+    console.log(OrderInfo);
 
     if (prices){
-      if (OrderInfo.activityNumRule && OrderInfo.activityNumRule.length > 0) {
-        for (var i = 0; i < OrderInfo.activityNumRule.length; i++) {
-          var value = OrderInfo.activityNumRule[i];
-          if (value.itemId == 4) {   //金蛋
-            if (prices >= parseInt(value.useMoney)) {
-              eggNum = Math.floor(prices / parseInt(value.useMoney));
+      if (OrderInfo.itmes && OrderInfo.itmes.length > 0) {
+        for (var i = 0; i < OrderInfo.itmes.length; i++) {
+          var value = OrderInfo.itmes[i];
+          if (value.itme_id == 4) {   //金蛋
+            if (prices >= parseInt(value.use_money)) {
+              eggNum = Math.floor(prices / parseInt(value.use_money));
               value.num = eggNum;
               lotteryNumData.push(value);
               egg = false;
             } else {
               eggNum = 0;
             }
-          } else if (value.itemId == 5) {  //抽奖
-            if (prices >= parseInt(value.useMoney)) {
-              lotteryNum = Math.floor(prices / parseInt(value.useMoney));
+          } else if (value.itme_id == 5) {  //抽奖
+            if (prices >= parseInt(value.use_money)) {
+              lotteryNum = Math.floor(prices / parseInt(value.use_money));
               value.num = lotteryNum;
                lotteryNumData.push(value);
               lottery = false;
             } else {
               lotteryNum = 0;
             }
-          }
-        }
-        showHideActivity2 = false;
-      }
-      if (OrderInfo.activityPresentRule && OrderInfo.activityPresentRule.length > 0) {
-       
-        for (var order = 0; order < OrderInfo.activityPresentRule.length; order++) {
-          var orderPrice = OrderInfo.activityPresentRule[order];
-          if (prices >= orderPrice.useMoney) {
-            gift = false;  //让礼品显示
-            giftData.push(orderPrice.giftName);
-            var objs = {};
-            objs.activityId = OrderInfo.activityId;
-            objs.giftId = orderPrice.gift;
-            objs.gift = orderPrice.giftName; 
-            gifNumsData.push(objs);
+          } else if (value.itme_id > 5){
+            giftNumH = false;
+            
+            if (prices >= parseInt(value.use_money)) {
+              if (value.itme_id > 6) {
+                giftNum += '/';
+              }
+              giftNum += value.gns;
+            }
+            
 
           }
         }
-       
         showHideActivity2 = false;
-      } else {
-        giftData = ['暂无'];
       }
-      giftNum = giftData.join('/');
+      // if (OrderInfo.pictures && OrderInfo.pictures.length > 0) {
+       
+      //   for (var order = 0; order < OrderInfo.pictures.length; order++) {
+      //     var orderPrice = OrderInfo.pictures[order];
+      //     if (prices >= orderPrice.use_money) {
+      //       gift = false;  //让礼品显示
+      //       giftData.push(orderPrice.gns);
+      //       var objs = {};
+      //       objs.activityId = OrderInfo.id;
+      //       objs.giftId = orderPrice.gift;
+      //       objs.gift = orderPrice.gns; 
+      //       gifNumsData.push(objs);
+
+      //     }
+      //   }
+       
+      //   showHideActivity2 = false;
+      // } else {
+      //   giftData = ['暂无'];
+      // }
+      //giftNum = giftData.join('/');
     }
 
     thisPage.setData({
@@ -666,6 +687,7 @@ getPageData:function(e){
       lotteryNum: lotteryNum, //可抽奖值
       eggNum: eggNum ,   //可砸金蛋值
       giftNum: giftNum,  //满赠礼物值
+      giftNumH: giftNumH,
       gifNumsData: gifNumsData,  //满赠礼物的数值
       lotteryNumData: lotteryNumData
     })
@@ -1113,6 +1135,28 @@ submitData:function(e){
       }
     }
     var urls= "";
+
+    if (!thisPage.data._name || thisPage.data._name ==""){
+      app.showWarnMessage("请输入收件人")
+      return;
+    }
+    if (!thisPage.data._phone || thisPage.data._phone == "") {
+      app.showWarnMessage("请输入收件人手机号")
+      return;
+    }
+    if (!thisPage.data._phone || thisPage.data._phone == "") {
+      app.showWarnMessage("请输入收件人手机号")
+      return;
+    }
+    if (!thisPage.data.realityPeice || thisPage.data.realityPeice == "") {
+      app.showWarnMessage("请输入实收金额")
+      return;
+    }
+    if (!thisPage.data.prepayPrice || thisPage.data.prepayPrice == "") {
+      app.showWarnMessage("请输入定金")
+      return;
+    }
+
     var dataList = { 
       shopId: app.globalData.userInfo.shop_id,  //店铺id
       sellerId: app.globalData.userInfo.id,  //销售id
@@ -1126,6 +1170,7 @@ submitData:function(e){
       thisTimePrice: thisPage.data.realityPeice,
       remarks: thisPage.data.remarkText,  //备注
       explain: thisPage.data.explain, 
+      isUseActivityCard: thisPage.data.useType,
       depositPrice: thisPage.data.prepayPrice,//定金
       payStatus: thisPage.data.payWay,  //支付方式
       province: thisPage.data.province.code, //省编码
@@ -1141,7 +1186,13 @@ submitData:function(e){
       productInfoList: totalPriceInfo, //产品数组
     };
    
-  urls = '/app/addOrder';
+ 
+    if (thisPage.data.editType == 'add') {
+      urls = '/app/addOrder';
+    } else {
+      urls = '/app/updateOrder';
+      dataList.orderId = thisPage.data.orderId;  //订单id 
+    }
    
   wx.request({
     url: urlPage + urls ,
@@ -1240,5 +1291,19 @@ saveAddress:function(e){
         console.log(res + '失败！');
       }
     })
+  },
+  //编辑使用卡
+  eidtUseCard: function (e) {
+    var thisPage = this;
+    var value = e.detail.value;  //值
+   
+
+   
+    thisPage.setData({
+      useType: value
+    })
+
+
+
   },
 })

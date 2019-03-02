@@ -35,7 +35,7 @@
         </view>
       </view>
     </view>
-    <view class='make_order' bindtap='user_phone_pop' data-customerId='{{customerInfo.customerId}}' data-type='open'>生成订单</view>
+    <view class='make_order' bindtap='getActivity' data-customerId='{{customerInfo.customerId}}' data-type='open'>生成订单</view>
     <!--生成订单-->
     <view class='make_order_box' hidden='{{makeOrder}}'>
       <view class='order_class_box'>
