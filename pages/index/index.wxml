@@ -3,7 +3,7 @@
   <block wx:for="{{activityList}}" wx:for-item="item" wx:key="image">
       <view style='position:relative;'>
         <view class='activit_list' data-activity_id="{{item.id}}" data-type='1' data-activityType='{{item.type}}' bindtap='skipUpTo' data-url='/pages/activity/activity_details/activity_details?details={{item.id}}'>
-            <image src='{{item.blockurl}}' class='activity_img' mode='widthFix'></image>
+            <image src='{{item.imgurl}}' class='activity_img' mode='widthFix'></image>
           <view class=' flexRow justAround'>
             <view class='flexColumnH justAround'>
               <view class='activity_name'>活动名称: {{item.name}}</view>

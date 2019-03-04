@@ -82,7 +82,7 @@
 </view>
 
 <!--生成订单-->
-<view class='makeOrder' bindtap='user_phone_pop'>生成订单</view>
+<view class='makeOrder' bindtap='getActivity'>生成订单</view>
 
  <!--报备客户的弹框-->
   <view class='report_user' hidden='{{_popUp}}'>
